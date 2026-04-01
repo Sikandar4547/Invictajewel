@@ -1,0 +1,99 @@
+@if (state$ | async; as state) {
+  @if (state.kind === 'loading') {
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <div class="h-10 w-64 bg-neutral-200 rounded animate-pulse mb-6"></div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        @for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track _) {
+          <div class="rounded-xl overflow-hidden shadow-md bg-white">
+            <div class="aspect-square bg-neutral-200 animate-pulse"></div>
+            <div class="p-3 space-y-2">
+              <div class="h-4 bg-neutral-200 rounded animate-pulse w-3/4"></div>
+              <div class="h-4 bg-neutral-200 rounded animate-pulse w-1/2"></div>
+              <div class="h-9 bg-neutral-200 rounded animate-pulse mt-2"></div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else if (state.kind === 'error') {
+    <div class="max-w-6xl mx-auto px-4 py-16 text-center">
+      <p class="font-display text-2xl text-jewel-charcoal">Category not found</p>
+      <a routerLink="/" class="inline-block mt-4 text-jewel-gold underline">Return home</a>
+    </div>
+  } @else {
+    <div class="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-[220px_1fr] gap-8">
+      <aside class="space-y-4">
+        <p class="font-display text-xl text-jewel-charcoal">Refine</p>
+        @if (state.category.children?.length) {
+          <div class="flex flex-col gap-1">
+            @for (ch of state.category.children; track ch.id) {
+              <a [routerLink]="['/category', ch.slug]" class="text-sm py-1 px-2 rounded hover:bg-jewel-cream">
+                {{ ch.name }}
+              </a>
+            }
+          </div>
+        }
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Sort</mat-label>
+          <mat-select [(ngModel)]="sortBy" (selectionChange)="onSortChange()">
+            <mat-option value="newest">Newest</mat-option>
+            <mat-option value="price-asc">Price ↑</mat-option>
+            <mat-option value="price-desc">Price ↓</mat-option>
+            <mat-option value="name">Name</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </aside>
+      <div>
+        <nav class="text-sm text-neutral-600 mb-4 flex flex-wrap gap-x-2 gap-y-1 items-center" aria-label="Breadcrumb">
+          <a routerLink="/" class="hover:text-jewel-gold">Home</a>
+          @for (crumb of state.breadcrumb; track crumb.id; let last = $last) {
+            <span class="text-neutral-400" aria-hidden="true">&gt;</span>
+            @if (last) {
+              <span class="text-jewel-charcoal font-medium">{{ crumb.name }}</span>
+            } @else {
+              <a [routerLink]="['/category', crumb.slug]" class="hover:text-jewel-gold">{{ crumb.name }}</a>
+            }
+          }
+        </nav>
+        <div class="mb-6">
+          <h1 class="font-display text-4xl text-jewel-charcoal">{{ state.category.name }}</h1>
+          @if (state.category.description) {
+            <p class="text-neutral-600 mt-2 max-w-3xl">{{ state.category.description }}</p>
+          }
+        </div>
+        @if (!state.products.items.length) {
+          <p class="text-neutral-600 py-12 text-center text-lg">No products found in this category.</p>
+        } @else {
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            @for (p of state.products.items; track p.id) {
+              <app-product-card [product]="p" />
+            }
+          </div>
+        }
+        @if (state.products.totalPages > 1) {
+          <div class="flex flex-wrap justify-center gap-2 mt-8 items-center">
+            <button mat-stroked-button [disabled]="page$.value <= 1" (click)="prev()">Previous</button>
+            @for (btn of pageButtonList(state.products.totalPages, page$.value); track $index) {
+              @if (btn === null) {
+                <span class="px-2 text-neutral-400">…</span>
+              } @else {
+                <button
+                  mat-stroked-button
+                  [class.bg-jewel-gold]="btn === page$.value"
+                  [class.text-white]="btn === page$.value"
+                  [class.border-jewel-gold]="btn === page$.value"
+                  (click)="goToPage(btn)"
+                >
+                  {{ btn }}
+                </button>
+              }
+            }
+            <button mat-stroked-button [disabled]="page$.value >= state.products.totalPages" (click)="next(state.products.totalPages)">
+              Next
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  }
+}

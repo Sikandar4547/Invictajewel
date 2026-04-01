@@ -1,0 +1,39 @@
+/* Desktop navigation active states */
+:host ::ng-deep .nav-link-active {
+  color: #e8c39e !important;
+  border-bottom: 3px solid #b76e2e;
+  padding-bottom: 3px !important;
+}
+
+:host ::ng-deep .nav-link-active .mdc-button__label {
+  color: #e8c39e !important;
+}
+
+:host ::ng-deep .nav-link-active.mat-mdc-button .mat-mdc-button-persistent-ripple::before {
+  border-bottom: 3px solid #b76e2e;
+}
+
+/* Submenu active states */
+:host ::ng-deep .nav-sublink-active {
+  color: #b76e2e !important;
+  font-weight: 600;
+  background-color: rgba(232, 195, 158, 0.3) !important;
+  border-left: 3px solid #b76e2e;
+  padding-left: calc(1.25rem - 3px) !important;
+}
+
+/* Mobile navigation active state */
+:host ::ng-deep .nav-mobile-active {
+  color: #b76e2e !important;
+  background-color: rgba(183, 110, 46, 0.08);
+}
+
+/* Dropdown menu improvements */
+:host {
+  --dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --dropdown-border: #f5f3f0;
+}
+
+:host ::ng-deep div[class*="bg-white"] {
+  box-shadow: var(--dropdown-shadow);
+}

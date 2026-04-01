@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/InvictaJewel.API/InvictaJewel.API.csproj" />
+    <Project Path="backend/InvictaJewel.Application/InvictaJewel.Application.csproj" />
+    <Project Path="backend/InvictaJewel.Domain/InvictaJewel.Domain.csproj" />
+    <Project Path="backend/InvictaJewel.Infrastructure/InvictaJewel.Infrastructure.csproj" />
+    <Project Path="backend/InvictaJewel.Tests/InvictaJewel.Tests.csproj" />
+  </Folder>
+</Solution>

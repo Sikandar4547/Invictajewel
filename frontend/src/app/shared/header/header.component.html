@@ -1,0 +1,158 @@
+<mat-toolbar class="!bg-jewel-charcoal !text-jewel-cream shadow-md sticky top-0 z-50">
+  <a routerLink="/" class="font-display text-2xl tracking-wide text-jewel-rose mr-4 shrink-0">Invicta Jewel</a>
+
+  <!-- Desktop nav -->
+  <nav class="hidden md:flex flex-1 gap-2 items-center justify-center min-h-[48px]" aria-label="Main">
+    <a
+      mat-button
+      routerLink="/"
+      routerLinkActive="nav-link-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="!text-jewel-cream hover:!text-jewel-gold transition-colors"
+    >
+      HOME
+    </a>
+    @for (item of categories$ | async; track item.id) {
+      <div class="relative group/nav h-full flex items-center">
+        <a
+          mat-button
+          [routerLink]="['/category', item.slug]"
+          [class.nav-link-active]="isBranchActive(item)"
+          class="!text-jewel-cream hover:!text-jewel-gold transition-colors flex items-center gap-1"
+        >
+          {{ item.name }}
+          @if (item.children?.length) {
+            <span class="text-xs">▼</span>
+          }
+        </a>
+        @if (item.children?.length) {
+          <div
+            class="absolute left-0 top-full pt-2 min-w-[220px] opacity-0 invisible pointer-events-none group-hover/nav:opacity-100 group-hover/nav:visible group-hover/nav:pointer-events-auto transition-all duration-200 z-[60]"
+          >
+            <div class="bg-white text-jewel-charcoal shadow-xl rounded-lg py-3 border border-neutral-150">
+              @for (child of item.children; track child.id) {
+                <div class="relative group/sub">
+                  <a
+                    [routerLink]="['/category', child.slug]"
+                    [class.nav-sublink-active]="isBranchActive(child)"
+                    class="flex items-center justify-between gap-3 px-5 py-3 text-sm font-medium hover:bg-jewel-cream hover:text-jewel-gold transition-colors whitespace-nowrap"
+                  >
+                    {{ child.name }}
+                    @if (child.children?.length) {
+                      <span class="text-neutral-400 text-sm leading-none">›</span>
+                    }
+                  </a>
+                  @if (child.children?.length) {
+                    <div
+                      class="absolute left-full top-0 ml-1 min-w-[200px] opacity-0 invisible pointer-events-none group-hover/sub:opacity-100 group-hover/sub:visible group-hover/sub:pointer-events-auto transition-all duration-200 z-[70]"
+                    >
+                      <div class="bg-white text-jewel-charcoal shadow-xl rounded-lg py-3 border border-neutral-150">
+                        @for (gc of child.children; track gc.id) {
+                          <a
+                            [routerLink]="['/category', gc.slug]"
+                            [class.nav-sublink-active]="isLeafActive(gc.slug)"
+                            class="block px-5 py-2.5 text-sm hover:bg-jewel-cream hover:text-jewel-gold transition-colors whitespace-nowrap"
+                          >
+                            {{ gc.name }}
+                          </a>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </nav>
+
+  <span class="flex-1 md:hidden"></span>
+
+  <button
+    mat-icon-button
+    type="button"
+    class="md:!hidden mr-1"
+    aria-label="Open menu"
+    (click)="openMobileMenu($event)"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <a mat-icon-button routerLink="/cart" aria-label="Cart">
+    <mat-icon [matBadgeHidden]="(cartCount$ | async) === 0" [matBadge]="(cartCount$ | async) || 0" matBadgeSize="small" matBadgeColor="warn">
+      shopping_bag
+    </mat-icon>
+  </a>
+</mat-toolbar>
+
+<!-- Mobile drawer -->
+@if (mobileMenuOpen()) {
+  <div
+    class="fixed left-0 right-0 top-14 bottom-0 z-[40] md:hidden bg-black/50"
+    role="presentation"
+    (click)="closeMobileMenu()"
+  ></div>
+  <aside
+    class="fixed top-14 right-0 bottom-0 z-[41] w-[min(100vw,20rem)] bg-jewel-cream text-jewel-text shadow-xl md:hidden overflow-y-auto"
+    (click)="$event.stopPropagation()"
+    aria-label="Mobile navigation"
+  >
+    <div class="flex items-center justify-between p-3 border-b border-neutral-200">
+      <span class="font-display text-lg text-jewel-charcoal">Menu</span>
+      <button mat-icon-button type="button" aria-label="Close menu" (click)="closeMobileMenu()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="flex flex-col py-2">
+      <a
+        mat-button
+        routerLink="/"
+        routerLinkActive="nav-mobile-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="!justify-start rounded-none"
+        (click)="closeMobileMenu()"
+      >
+        HOME
+      </a>
+      @for (item of categories$ | async; track item.id) {
+        <ng-container [ngTemplateOutlet]="mobileBranch" [ngTemplateOutletContext]="{ $implicit: item, depth: 0 }" />
+      }
+    </div>
+  </aside>
+}
+
+<ng-template #mobileBranch let-node let-depth="depth">
+  @if (node.children?.length) {
+    <mat-expansion-panel class="!shadow-none rounded-none border-0 border-b border-neutral-200">
+      <mat-expansion-panel-header class="!px-3 !h-12 hover:!bg-white/50">
+        <mat-panel-title class="flex items-center gap-2 flex-1 mr-2">
+          <a
+            [routerLink]="['/category', node.slug]"
+            class="text-left flex-1 font-medium text-jewel-charcoal no-underline hover:text-jewel-gold"
+            (click)="onMobileNavLinkClick($event)"
+          >
+            {{ node.name }}
+          </a>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="bg-white/60 pl-2">
+        @for (ch of node.children; track ch.id) {
+          <ng-container [ngTemplateOutlet]="mobileBranch" [ngTemplateOutletContext]="{ $implicit: ch, depth: depth + 1 }" />
+        }
+      </div>
+    </mat-expansion-panel>
+  } @else {
+    <a
+      mat-button
+      [routerLink]="['/category', node.slug]"
+      routerLinkActive="nav-mobile-active"
+      class="!justify-start rounded-none w-full"
+      [style.padding-left.rem]="3 + depth * 0.75"
+      (click)="onMobileNavLinkClick($event)"
+    >
+      {{ node.name }}
+    </a>
+  }
+</ng-template>
