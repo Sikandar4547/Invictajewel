@@ -1,0 +1,10 @@
+
+Nov 15, 2022 14.04.33: Uncaught Error: Class 'WPMailSMTP\Helpers\Crypto' not found in /home/invictajewels/public_html/wp-content/plugins/wp-mail-smtp/src/Options.php:326
+Stack trace:
+#0 /home/invictajewels/public_html/wp-content/plugins/wp-mail-smtp/src/Options.php(286): WPMailSMTP\Options->get_existing_option_value('smtp', 'pass')
+#1 /home/invictajewels/public_html/wp-content/plugins/wp-mail-smtp/src/Processor.php(102): WPMailSMTP\Options->get('smtp', 'pass')
+#2 /home/invictajewels/public_html/wp-includes/class-wp-hook.php(303): WPMailSMTP\Processor->phpmailer_init(Object(WPMailSMTP\MailCatcherV6))
+#3 /home/invictajewels/public_html/wp-includes/class-wp-hook.php(327): WP_Hook->apply_filters('', Array)
+#4 /home/invictajewels/public_html/wp-includes/plugin.php(518): WP_Hook->do_action(Array)
+#5 /home/invictajewels/public_html/wp-includes/pluggable.php(538): do_action_ref_array('phpmailer_init', Array)
+#6 /home/invictajewels/public_html/wp-admin/includes/class-wp-automatic-updater.php(908): wp_mail(Array, '[Invicta Jewels...', 'Howdy

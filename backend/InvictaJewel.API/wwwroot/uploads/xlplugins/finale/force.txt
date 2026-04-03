@@ -1,0 +1,1617 @@
+
+Nov 25, 2022 16.15.32: Product id 1926 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price Before Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : wcct_trigger_get_price After Price: 9500
+Nov 25, 2022 16.15.32: Product id 1926 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 472 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 472 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 464 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price Before Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : wcct_trigger_get_price After Price: 10000
+Nov 25, 2022 16.15.32: Product id 464 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 459 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price Before Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : wcct_trigger_get_price After Price: 15000
+Nov 25, 2022 16.15.32: Product id 459 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 457 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 457 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 451 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price Before Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : wcct_trigger_get_price After Price: 18000
+Nov 25, 2022 16.15.32: Product id 451 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 448 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price Before Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : wcct_trigger_get_price After Price: 17500
+Nov 25, 2022 16.15.32: Product id 448 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 356 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_sale_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price Before Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : wcct_trigger_get_price After Price: 7650
+Nov 25, 2022 16.15.32: Product id 356 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 352 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price Before Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : wcct_trigger_get_price After Price: 5500
+Nov 25, 2022 16.15.32: Product id 352 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 353 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price Before Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : wcct_trigger_get_price After Price: 8000
+Nov 25, 2022 16.15.32: Product id 353 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 349 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price Before Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : wcct_trigger_get_price After Price: 6500
+Nov 25, 2022 16.15.32: Product id 349 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 341 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price Before Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : wcct_trigger_get_price After Price: 5000
+Nov 25, 2022 16.15.32: Product id 341 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 331 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 331 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 319 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_sale_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price Before Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : wcct_trigger_get_price After Price: 9900
+Nov 25, 2022 16.15.32: Product id 319 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 323 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price Before Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : wcct_trigger_get_price After Price: 8500
+Nov 25, 2022 16.15.32: Product id 323 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 303 : DATA SET UP : CHECK DATA BELOW
+Nov 25, 2022 16.15.32: Array
+(
+    [campaign_meta] => Array
+        (
+            [2594] => Array
+                (
+                    [campaign_id] => 2594
+                    [start_time] => 1612119600
+                    [end_time] => 1613415600
+                )
+
+            [2667] => Array
+                (
+                    [campaign_id] => 2667
+                    [start_time] => 1616180400
+                    [end_time] => 1616526000
+                )
+
+            [2670] => Array
+                (
+                    [campaign_id] => 2670
+                    [start_time] => 1632855600
+                    [end_time] => 1634803200
+                )
+
+        )
+
+    [grid_bar] => Array
+        (
+        )
+
+    [single_bar] => Array
+        (
+        )
+
+    [show_on_cart] => Array
+        (
+        )
+
+    [grid_timer] => Array
+        (
+        )
+
+    [single_timer] => Array
+        (
+        )
+
+    [goals] => 
+    [deals] => 
+    [misc] => Array
+        (
+        )
+
+    [expired] => Array
+        (
+            [0] => 2594
+            [1] => 2667
+            [2] => 2670
+        )
+
+    [running] => Array
+        (
+        )
+
+)
+
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_sale_price Before Price: 
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_sale_price After Price: 
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : function  wcct_woocommerce_product_is_in_stock yes
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price Before Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : wcct_trigger_get_price After Price: 12000
+Nov 25, 2022 16.15.32: Product id 303 : function  wcct_woocommerce_product_is_in_stock yes

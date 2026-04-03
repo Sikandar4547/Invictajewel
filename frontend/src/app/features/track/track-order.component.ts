@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,11 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { OrderService } from '../../core/services/order.service';
 import { OrderDetailDto } from '../../models/api.types';
+import { PkrCurrencyPipe } from '../../shared/pipes/pkr-currency.pipe';
 
 @Component({
   selector: 'app-track-order',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, CurrencyPipe, MatSnackBarModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, PkrCurrencyPipe, MatSnackBarModule],
   template: `
     <div class="max-w-xl mx-auto px-4 py-10">
       <h1 class="font-display text-4xl mb-4 text-jewel-charcoal">Track your order</h1>
@@ -29,7 +29,7 @@ import { OrderDetailDto } from '../../models/api.types';
           <p class="font-mono text-sm">{{ order.orderNumber }}</p>
           <p class="text-sm text-neutral-600">{{ order.customerName }} — {{ order.customerEmail }}</p>
           <p class="text-sm text-neutral-600">{{ order.shippingAddress }}, {{ order.city }}</p>
-          <p class="font-price font-semibold text-lg">{{ order.orderTotal | currency }}</p>
+          <p class="font-price font-semibold text-lg">{{ order.orderTotal | pkrCurrency }}</p>
         </div>
       }
     </div>

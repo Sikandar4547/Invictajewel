@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,45 +6,45 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ProductListDto } from '../../models/api.types';
 import { CartService } from '../../core/services/cart.service';
+import { getImageUrl } from '../../core/utils/image-url.util';
+import { PkrCurrencyPipe } from '../pipes/pkr-currency.pipe';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatCardModule, MatButtonModule, MatSnackBarModule, CurrencyPipe],
+  imports: [CommonModule, RouterLink, MatCardModule, MatButtonModule, MatSnackBarModule, PkrCurrencyPipe],
   template: `
-    <mat-card class="h-full flex flex-col overflow-hidden rounded-xl shadow-md bg-white">
-      <a [routerLink]="['/product', product.slug]" class="block aspect-square bg-jewel-cream overflow-hidden">
+    <mat-card class="h-full flex flex-col overflow-hidden rounded-lg shadow-md bg-white dark:bg-dark-bg-secondary text-light-text dark:text-dark-text border border-neutral-200 dark:border-dark-border">
+      <a [routerLink]="['/product', product.slug]" class="block aspect-[3/4] bg-jewel-cream dark:bg-dark-bg overflow-hidden">
         <img
-          [src]="product.primaryImageUrl || '/favicon.ico'"
+          [src]="getImageUrl(product.primaryImageUrl)"
           [alt]="product.name"
           loading="lazy"
-          class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
         />
       </a>
-      <mat-card-content class="flex-1 flex flex-col gap-2 pt-3">
-        <div class="flex items-start justify-between gap-2">
-          <a [routerLink]="['/product', product.slug]" class="font-display text-lg text-jewel-charcoal hover:text-jewel-gold line-clamp-2">
-            {{ product.name }}
-          </a>
-          @if (product.isOnSale || (product.salePrice != null && product.salePrice < product.regularPrice)) {
-            <span class="shrink-0 text-xs font-semibold uppercase tracking-wide bg-red-50 text-jewel-sale px-2 py-0.5 rounded">Sale</span>
-          }
-        </div>
-        <div class="font-price text-jewel-gold mt-auto flex flex-wrap items-baseline gap-2">
+      <mat-card-content class="flex-1 flex flex-col gap-3 p-4">
+        <a [routerLink]="['/product', product.slug]" class="font-display text-base text-jewel-charcoal dark:text-dark-text hover:text-jewel-gold dark:hover:text-jewel-gold-light line-clamp-2 leading-tight">
+          {{ product.name }}
+        </a>
+        <div class="flex items-baseline gap-2">
           @if (product.salePrice != null && product.salePrice < product.regularPrice) {
-            <span class="text-xl font-semibold">{{ product.salePrice | currency }}</span>
-            <span class="text-sm text-neutral-500 line-through">{{ product.regularPrice | currency }}</span>
+            <span class="font-price text-lg font-bold text-jewel-gold dark:text-jewel-gold-light">{{ product.salePrice | pkrCurrency }}</span>
+            <span class="text-xs text-neutral-500 dark:text-dark-text-secondary line-through">{{ product.regularPrice | pkrCurrency }}</span>
+            <span class="ml-auto text-xs font-semibold uppercase tracking-wide bg-red-50 dark:bg-red-900/30 text-jewel-sale dark:text-red-300 px-2 py-1 rounded">Sale</span>
           } @else {
-            <span class="text-xl font-semibold">{{ product.regularPrice | currency }}</span>
+            <span class="font-price text-lg font-bold text-jewel-gold dark:text-jewel-gold-light">{{ product.regularPrice | pkrCurrency }}</span>
           }
         </div>
-        <button mat-flat-button color="primary" class="w-full !bg-jewel-gold !text-white" (click)="add($event)">Add to Cart</button>
+        <button mat-flat-button color="primary" class="w-full mt-auto !bg-jewel-gold dark:!bg-jewel-gold-light !text-white dark:!text-jewel-charcoal hover:shadow-lg transition-shadow" (click)="add($event)">Add to Cart</button>
       </mat-card-content>
     </mat-card>
   `,
 })
 export class ProductCardComponent {
   @Input({ required: true }) product!: ProductListDto;
+
+  protected readonly getImageUrl = getImageUrl;
 
   constructor(
     private readonly cart: CartService,

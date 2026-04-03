@@ -9,6 +9,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CategoryService } from '../../core/services/category.service';
 import { CartService } from '../../core/services/cart.service';
+import { ThemeService } from '../../core/services/theme.service';
 import { CategoryDto } from '../../models/api.types';
 import { categoryDescendantSlugs } from '../../core/utils/category-tree.util';
 import { filter, map, merge, of, startWith } from 'rxjs';
@@ -34,6 +35,7 @@ export class HeaderComponent {
   private readonly categoriesApi = inject(CategoryService);
   private readonly cartApi = inject(CartService);
   private readonly router = inject(Router);
+  readonly themeService = inject(ThemeService);
 
   readonly categories$ = this.categoriesApi.activeTree();
 

@@ -1,5 +1,6 @@
 using InvictaJewel.Application.DTOs;
 using InvictaJewel.Application.Services;
+using InvictaJewel.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,22 @@ public class CategoriesController(ICategoryService categories) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<CategoryDto>>> GetActive(CancellationToken ct) =>
         Ok(await categories.GetActiveHierarchyAsync(ct));
+
+
+    [HttpPost("import-from-wp")]
+    public async Task<ActionResult> ImportFromWordPress([FromServices] ApplicationDbContext db, [FromServices] ILoggerFactory loggerFactory, [FromServices] IWebHostEnvironment env, CancellationToken ct)
+    {
+        var logger = loggerFactory.CreateLogger("WPImport");
+        var wpConn = "Server=localhost;Database=mysql_178265_invicta;User=root;Password=;";
+        var report = await InvictaJewel.Infrastructure.Persistence.DbInitializer.SeedProductsFromWordPressReportAsync(db, wpConn, env.WebRootPath ?? Path.Combine(env.ContentRootPath, "wwwroot"), ct);
+        return Ok(report);
+    }
+    [HttpPost("repair-images")]
+    public async Task<ActionResult> RepairProductImages([FromServices] ApplicationDbContext db, [FromServices] IWebHostEnvironment env, CancellationToken ct)
+    {
+        var repaired = await InvictaJewel.Infrastructure.Persistence.DbInitializer.RepairProductImagesAsync(db, env.WebRootPath ?? Path.Combine(env.ContentRootPath, "wwwroot"), ct);
+        return Ok(new { repaired });
+    }
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<CategoryDto>> GetById(int id, [FromQuery] bool includeProducts = false, CancellationToken ct = default)

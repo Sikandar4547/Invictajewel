@@ -95,6 +95,19 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     var logger = scope.ServiceProvider.GetRequiredService<ILoggerFactory>().CreateLogger("Startup");
     await DbInitializer.SeedAsync(db, logger);
+#if WPIMPORT
+    try
+    {
+        // WordPress MySQL connection string provided by user
+        var wpConn = "Server=localhost;Database=mysql_178265_invicta;User=root;Password=;";
+        var webRootPath = webRoot; // already computed above
+        await DbInitializer.SeedProductsFromWordPressAsync(db, logger, wpConn, webRootPath);
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "WordPress import failed.");
+    }
+#endif
 }
 
 if (app.Environment.IsDevelopment())

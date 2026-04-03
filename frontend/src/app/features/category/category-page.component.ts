@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,7 +31,7 @@ type CategoryPageState =
 @Component({
   selector: 'app-category-page',
   standalone: true,
-  imports: [AsyncPipe, RouterLink, MatButtonModule, MatSelectModule, MatFormFieldModule, FormsModule, ProductCardComponent],
+  imports: [CommonModule, AsyncPipe, RouterLink, MatButtonModule, MatSelectModule, MatFormFieldModule, FormsModule, ProductCardComponent],
   templateUrl: './category-page.component.html',
 })
 export class CategoryPageComponent {

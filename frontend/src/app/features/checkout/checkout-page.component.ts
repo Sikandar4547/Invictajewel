@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { PkrCurrencyPipe } from '../../shared/pipes/pkr-currency.pipe';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -22,32 +22,33 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    CurrencyPipe,
+    PkrCurrencyPipe,
     AsyncPipe,
     MatSnackBarModule,
   ],
   template: `
-    <div class="max-w-3xl mx-auto px-4 py-10">
-      <h1 class="font-display text-4xl mb-6 text-jewel-charcoal">Checkout</h1>
-      @if (!confirmation) {
-        <mat-stepper linear #stepper>
-          <mat-step [stepControl]="infoForm" label="Your details">
-            <form [formGroup]="infoForm" class="grid gap-4 pt-4">
-              <mat-form-field appearance="outline">
-                <mat-label>Full name</mat-label>
-                <input matInput formControlName="customerName" />
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" formControlName="customerEmail" />
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Phone</mat-label>
-                <input matInput formControlName="customerPhone" />
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Shipping address</mat-label>
-                <textarea matInput rows="3" formControlName="shippingAddress"></textarea>
+    <div class="bg-white dark:bg-dark-bg text-light-text dark:text-dark-text min-h-screen">
+      <div class="max-w-3xl mx-auto px-4 py-10">
+        <h1 class="font-display text-4xl mb-6 text-jewel-charcoal dark:text-dark-text">Checkout</h1>
+        @if (!confirmation) {
+          <mat-stepper linear #stepper>
+            <mat-step [stepControl]="infoForm" label="Your details">
+              <form [formGroup]="infoForm" class="grid gap-4 pt-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Full name</mat-label>
+                  <input matInput formControlName="customerName" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput type="email" formControlName="customerEmail" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Phone</mat-label>
+                  <input matInput formControlName="customerPhone" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Shipping address</mat-label>
+                  <textarea matInput rows="3" formControlName="shippingAddress"></textarea>
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>City</mat-label>
@@ -74,12 +75,12 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
                 @for (line of cart.items; track line.id) {
                   <div class="flex justify-between text-sm">
                     <span>{{ line.productName }} × {{ line.quantity }}</span>
-                    <span class="font-price">{{ line.lineTotal | currency }}</span>
+                    <span class="font-price">{{ line.lineTotal | pkrCurrency }}</span>
                   </div>
                 }
                 <div class="flex justify-between font-semibold text-jewel-gold text-lg border-t pt-3">
                   <span>Total</span>
-                  <span class="font-price">{{ cart.total | currency }}</span>
+                  <span class="font-price">{{ cart.total | pkrCurrency }}</span>
                 </div>
                 <p class="text-sm text-neutral-600">Payment: cash on delivery (COD).</p>
                 <div class="flex justify-between mt-6">
@@ -93,16 +94,17 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
           </mat-step>
         </mat-stepper>
       } @else {
-        <div class="rounded-2xl border border-jewel-rose/40 bg-white p-8 shadow">
-          <p class="text-jewel-gold font-semibold tracking-wide text-sm uppercase mb-2">Thank you</p>
-          <h2 class="font-display text-3xl mb-2 text-jewel-charcoal">Order confirmed</h2>
-          <p class="text-neutral-700 mb-4">Your order number is <span class="font-mono font-semibold">{{ confirmation.orderNumber }}</span>.</p>
-          <p class="text-sm text-neutral-600 mb-6">
-            Total: <span class="font-price text-jewel-gold">{{ confirmation.orderTotal | currency }}</span> — you will pay on delivery.
+        <div class="rounded-2xl border border-jewel-rose/40 dark:border-dark-border bg-white dark:bg-dark-bg-secondary p-8 shadow">
+          <p class="text-jewel-gold dark:text-jewel-gold-light font-semibold tracking-wide text-sm uppercase mb-2">Thank you</p>
+          <h2 class="font-display text-3xl mb-2 text-jewel-charcoal dark:text-dark-text">Order confirmed</h2>
+          <p class="text-neutral-700 dark:text-dark-text-secondary mb-4">Your order number is <span class="font-mono font-semibold">{{ confirmation.orderNumber }}</span>.</p>
+          <p class="text-sm text-neutral-600 dark:text-dark-text-secondary mb-6">
+            Total: <span class="font-price text-jewel-gold dark:text-jewel-gold-light">{{ confirmation.orderTotal | pkrCurrency }}</span> — you will pay on delivery.
           </p>
-          <a mat-raised-button color="primary" class="!bg-jewel-gold !text-white" routerLink="/">Continue shopping</a>
+          <a mat-raised-button color="primary" class="!bg-jewel-gold dark:!bg-jewel-gold-light !text-white dark:!text-jewel-charcoal" routerLink="/">Continue shopping</a>
         </div>
       }
+      </div>
     </div>
   `,
 })

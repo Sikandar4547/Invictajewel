@@ -1,39 +1,91 @@
+/* Header theming */
+:host {
+  --dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --dropdown-border: #f5f3f0;
+  --nav-bg: linear-gradient(to right, #B76E2E, #C97E3A);
+  --nav-text: #FFFFFF;
+  --nav-hover: #F9F6F0;
+  --nav-accent: #FFFFFF;
+}
+
+html.dark :host {
+  --dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --dropdown-border: #515151;
+  --nav-bg: linear-gradient(to right, #8B5A1F, #B76E2E);
+  --nav-text: #FFFFFF;
+  --nav-hover: #F9F6F0;
+  --nav-accent: #F9F6F0;
+}
+
 /* Desktop navigation active states */
 :host ::ng-deep .nav-link-active {
-  color: #e8c39e !important;
-  border-bottom: 3px solid #b76e2e;
+  color: #F9F6F0 !important;
+  border-bottom: 3px solid #FFFFFF;
   padding-bottom: 3px !important;
 }
 
 :host ::ng-deep .nav-link-active .mdc-button__label {
-  color: #e8c39e !important;
+  color: #F9F6F0 !important;
 }
 
 :host ::ng-deep .nav-link-active.mat-mdc-button .mat-mdc-button-persistent-ripple::before {
-  border-bottom: 3px solid #b76e2e;
+  border-bottom: 3px solid #FFFFFF;
 }
 
 /* Submenu active states */
 :host ::ng-deep .nav-sublink-active {
-  color: #b76e2e !important;
+  color: #B76E2E !important;
   font-weight: 600;
   background-color: rgba(232, 195, 158, 0.3) !important;
-  border-left: 3px solid #b76e2e;
+  border-left: 3px solid #B76E2E;
   padding-left: calc(1.25rem - 3px) !important;
+}
+
+html.dark :host ::ng-deep .nav-sublink-active {
+  color: #B76E2E !important;
+  background-color: rgba(183, 110, 46, 0.15) !important;
+  border-left-color: #D4A574;
 }
 
 /* Mobile navigation active state */
 :host ::ng-deep .nav-mobile-active {
-  color: #b76e2e !important;
+  color: #B76E2E !important;
   background-color: rgba(183, 110, 46, 0.08);
 }
 
-/* Dropdown menu improvements */
-:host {
-  --dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  --dropdown-border: #f5f3f0;
+html.dark :host ::ng-deep .nav-mobile-active {
+  background-color: rgba(212, 165, 116, 0.1);
 }
 
+/* Dropdown menu improvements */
 :host ::ng-deep div[class*="bg-white"] {
   box-shadow: var(--dropdown-shadow);
+}
+
+/* Dropdown dark mode fix */
+html.dark :host ::ng-deep div.bg-white {
+  @apply bg-dark-bg-secondary text-dark-text !important;
+}
+
+html.dark :host ::ng-deep .text-jewel-charcoal {
+  @apply text-dark-text !important;
+}
+
+html.dark :host ::ng-deep .border-neutral-150 {
+  @apply border-dark-border !important;
+}
+
+/* Icon color fix */
+:host ::ng-deep .mat-icon {
+  color: inherit;
+}
+
+/* Badge styling */
+:host ::ng-deep .mat-badge-content {
+  @apply bg-jewel-sale text-white;
+}
+
+/* Hover effects */
+:host ::ng-deep a:hover .mat-icon {
+  @apply text-jewel-cream dark:text-jewel-cream;
 }
