@@ -10,7 +10,7 @@ import { getImageUrl } from '../../core/utils/image-url.util';
   template: `
     @if (banners?.length; as len) {
       <section class="ij-banner-fullbleed relative bg-app-bg text-app-ink border-b border-app-border">
-        <div class="relative w-full aspect-[21/9] min-h-[200px] md:min-h-[280px] lg:aspect-[24/9]">
+        <div class="relative w-full aspect-[16/9] sm:aspect-[20/9] md:aspect-[21/9] lg:aspect-[24/9] min-h-[180px] sm:min-h-[240px] md:min-h-[280px] lg:min-h-[320px]">
           @for (b of banners!; track b.id; let i = $index) {
             <a
               [href]="resolveHref(b.linkUrl)"
@@ -37,15 +37,15 @@ import { getImageUrl } from '../../core/utils/image-url.util';
                 aria-hidden="true"
               ></div>
               <div
-                class="absolute inset-x-0 top-0 z-10 px-4 py-6 md:px-12 md:py-10 text-center pointer-events-none"
+                class="absolute inset-x-0 top-0 z-10 px-4 py-4 sm:px-6 sm:py-6 md:px-12 md:py-10 lg:py-12 text-center pointer-events-none"
               >
                 <p
-                  class="text-white/95 text-[1.25rem] tracking-[0.35em] uppercase font-semibold mb-2 md:mb-4 drop-shadow"
-                  style="line-height: 1rem"
+                  class="text-white/95 text-base sm:text-lg md:text-xl lg:text-2xl tracking-[0.35em] uppercase font-semibold mb-2 sm:mb-3 md:mb-4 drop-shadow"
+                  style="line-height: 1.2rem"
                 >
                   INVICTA BY MAHGUL
                 </p>
-                <p class="text-white text-[1.25rem] leading-[1.25rem] drop-shadow-lg max-w-4xl mx-auto">
+                <p class="text-white text-base sm:text-lg md:text-xl lg:text-2xl leading-snug drop-shadow-lg max-w-5xl mx-auto px-2">
                   {{ b.title }}
                 </p>
               </div>

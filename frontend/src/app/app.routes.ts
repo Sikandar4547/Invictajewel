@@ -3,6 +3,7 @@ import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', loadComponent: () => import('./features/home/home.component').then((m) => m.HomeComponent) },
+  { path: 'about', loadComponent: () => import('./features/about/about.component').then((m) => m.AboutComponent) },
   { path: 'category/:slug', loadComponent: () => import('./features/category/category-page.component').then((m) => m.CategoryPageComponent) },
   { path: 'product/:slug', loadComponent: () => import('./features/product/product-detail.component').then((m) => m.ProductDetailComponent) },
   { path: 'cart', loadComponent: () => import('./features/cart/cart-page.component').then((m) => m.CartPageComponent) },

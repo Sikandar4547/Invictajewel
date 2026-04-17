@@ -1,10 +1,10 @@
-<mat-toolbar class="!bg-gradient-to-r !from-jewel-gold-dark !to-jewel-gold dark:!from-jewel-gold-dark dark:!to-jewel-gold !text-white dark:!text-white shadow-lg sticky top-0 z-50">
+<mat-toolbar class="!bg-gradient-to-r !from-jewel-gold-dark !to-jewel-gold dark:!from-jewel-gold-dark dark:!to-jewel-gold !text-white dark:!text-white shadow-lg sticky top-0 z-50 min-w-0 max-w-full overflow-x-clip">
   <a routerLink="/" class="mr-4 shrink-0 hover:opacity-80 transition-opacity h-12 flex items-center">
     <img [src]="getImageUrl('/uploads/2021/08/cropped-PNG-LOGO-1-300x230.png')" alt="Invicta Jewel" class="h-full object-contain" />
   </a>
 
-  <!-- Desktop nav -->
-  <nav class="hidden md:flex flex-1 gap-2 items-center justify-center min-h-[48px]" aria-label="Main">
+  <!-- Desktop nav: use drawer below xl so tablets (e.g. iPad) are not cramped / clipped -->
+  <nav class="hidden xl:flex flex-1 min-w-0 gap-1 xl:gap-2 items-center justify-center min-h-[48px]" aria-label="Main">
     <a
       mat-button
       routerLink="/"
@@ -14,6 +14,29 @@
     >
       HOME
     </a>
+    <!-- Invicta World Dropdown -->
+    <div class="relative group/invicta h-full flex items-center">
+      <a
+        routerLink="/about"
+        mat-button
+        class="!text-white dark:!text-white hover:!text-jewel-cream dark:hover:!text-jewel-cream transition-colors flex items-center gap-1"
+      >
+        INVICTA WORLD
+        <span class="text-xs">▼</span>
+      </a>
+      <div
+        class="submenu-wrapper absolute left-0 top-full pt-2 min-w-[220px] z-[100]"
+      >
+        <div class="submenu-content rounded-xl shadow-lg py-3">
+          <a
+            routerLink="/about"
+            class="submenu-item w-full text-left flex items-center justify-between gap-3 px-5 py-3 text-sm font-medium transition-colors whitespace-nowrap hover:bg-app-field"
+          >
+            About Invicta
+          </a>
+        </div>
+      </div>
+    </div>
     @for (item of categories$ | async; track item.id) {
       <div class="relative group/nav h-full flex items-center">
         <a
@@ -70,12 +93,12 @@
     }
   </nav>
 
-  <span class="flex-1 md:hidden"></span>
+  <span class="flex-1 xl:hidden"></span>
 
   <button
     mat-icon-button
     type="button"
-    class="md:!hidden mr-1 !text-white dark:!text-white"
+    class="xl:!hidden mr-1 !text-white dark:!text-white"
     aria-label="Open menu"
     (click)="openMobileMenu($event)"
   >
@@ -101,12 +124,12 @@
 <!-- Mobile drawer -->
 @if (mobileMenuOpen()) {
   <div
-    class="fixed left-0 right-0 top-14 bottom-0 z-[40] md:hidden bg-black/50"
+    class="fixed left-0 right-0 top-14 bottom-0 z-[40] xl:hidden bg-black/50"
     role="presentation"
     (click)="closeMobileMenu()"
   ></div>
   <aside
-    class="fixed top-14 right-0 bottom-0 z-[41] w-[min(100vw,20rem)] bg-app-card text-app-ink shadow-card md:hidden overflow-y-auto border-l border-app-border"
+    class="fixed top-14 right-0 bottom-0 z-[41] w-[min(100vw,20rem)] bg-app-card text-app-ink shadow-card xl:hidden overflow-y-auto border-l border-app-border"
     (click)="$event.stopPropagation()"
     aria-label="Mobile navigation"
   >
@@ -124,6 +147,14 @@
         (click)="closeMobileMenu()"
       >
         Admin login
+      </a>
+      <a
+        mat-button
+        routerLink="/about"
+        class="!justify-start rounded-none text-app-ink border-b border-app-border"
+        (click)="closeMobileMenu()"
+      >
+        INVICTA WORLD
       </a>
       <a
         mat-button

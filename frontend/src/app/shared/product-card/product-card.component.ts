@@ -15,31 +15,37 @@ import { PkrCurrencyPipe } from '../pipes/pkr-currency.pipe';
   imports: [CommonModule, RouterLink, MatCardModule, MatButtonModule, PkrCurrencyPipe],
   template: `
     <mat-card class="h-full flex flex-col overflow-hidden rounded-xl shadow-card hover:shadow-card-hover transition-shadow duration-200 bg-app-card text-app-ink border border-app-border">
-      <a [routerLink]="['/product', product.slug]" class="block aspect-[3/4] sm:aspect-[4/5] bg-app-field overflow-hidden">
+      <a [routerLink]="['/product', product.slug]" class="block aspect-[3/4] sm:aspect-[3/4] lg:aspect-[4/5] bg-app-field overflow-hidden">
         <img
           [src]="getImageUrl(product.primaryImageUrl)"
           [alt]="product.name"
           loading="lazy"
-          class="w-full h-full min-h-[280px] sm:min-h-[320px] object-cover hover:scale-105 transition-transform duration-300"
+          class="w-full h-full min-h-[200px] sm:min-h-[260px] md:min-h-[280px] lg:min-h-[340px] xl:min-h-[380px] object-cover hover:scale-105 transition-transform duration-300"
         />
       </a>
-      <mat-card-content class="flex-1 flex flex-col gap-2.5 p-4 sm:p-5">
-        <a [routerLink]="['/product', product.slug]" class="font-display text-sm sm:text-base font-semibold text-app-ink hover:text-app-accent line-clamp-2 leading-snug transition-colors">
+      <mat-card-content class="flex-1 flex flex-col gap-2.5 lg:gap-3 p-4 sm:p-5 lg:p-6">
+        <a [routerLink]="['/product', product.slug]" class="font-display text-sm sm:text-base lg:text-lg font-semibold text-app-ink hover:text-app-accent line-clamp-2 leading-snug transition-colors">
           {{ product.name }}
         </a>
         <div class="flex items-baseline gap-2 flex-wrap">
           @if (product.salePrice != null && product.salePrice < product.regularPrice) {
-            <span class="font-price text-base font-bold text-app-accent">{{ product.salePrice | pkrCurrency }}</span>
-            <span class="text-xs text-app-ink-muted line-through">{{ product.regularPrice | pkrCurrency }}</span>
-            <span class="ml-auto text-xs font-semibold uppercase tracking-wide bg-red-50 dark:bg-red-950/40 text-jewel-sale dark:text-red-300 px-2 py-1 rounded-md">Sale</span>
+            <span class="font-price text-base lg:text-lg font-bold text-app-accent">{{ product.salePrice | pkrCurrency }}</span>
+            <span class="text-xs lg:text-sm text-app-ink-muted line-through">{{ product.regularPrice | pkrCurrency }}</span>
+            <span class="ml-auto text-xs lg:text-sm font-semibold uppercase tracking-wide bg-red-50 dark:bg-red-950/40 text-jewel-sale dark:text-red-300 px-2 py-1 rounded-md">Sale</span>
           } @else {
-            <span class="font-price text-base font-bold text-app-accent">{{ product.regularPrice | pkrCurrency }}</span>
+            <span class="font-price text-base lg:text-lg font-bold text-app-accent">{{ product.regularPrice | pkrCurrency }}</span>
           }
         </div>
-        <button mat-flat-button color="primary" class="w-full mt-auto !bg-jewel-gold dark:!bg-jewel-gold-light !text-white dark:!text-jewel-charcoal hover:!brightness-95 transition-all" (click)="add($event)">Add to Cart</button>
+        <button mat-flat-button color="primary" class="w-full mt-auto !bg-jewel-gold dark:!bg-jewel-gold-light !text-white dark:!text-jewel-charcoal hover:!brightness-95 transition-all text-sm lg:text-base py-2 lg:py-3" (click)="add($event)">Add to Cart</button>
       </mat-card-content>
     </mat-card>
   `,
+  styles: [`
+    :host {
+      display: block;
+      height: 100%;
+    }
+  `]
 })
 export class ProductCardComponent {
   @Input({ required: true }) product!: ProductListDto;

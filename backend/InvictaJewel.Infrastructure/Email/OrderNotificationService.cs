@@ -22,7 +22,7 @@ public class OrderNotificationService(
             return;
         }
 
-        var subject = $"Shipment Receipt - {order.OrderNumber}";
+        var subject = $"New COD Order Received - {order.OrderNumber}";
         var html = BuildHtml(order, cfg.StoreName);
         await emailSender.SendHtmlAsync(cfg.AdminEmail, subject, html, cancellationToken);
     }
@@ -54,18 +54,19 @@ public class OrderNotificationService(
           <tr>
             <td style="padding:24px;border-bottom:1px solid #e5e7eb;">
               <h1 style="margin:0;font-size:24px;color:#111827;">{WebUtility.HtmlEncode(storeName)}</h1>
-              <p style="margin:8px 0 0;font-size:14px;color:#4b5563;">Shipment receipt for order processing</p>
+              <p style="margin:8px 0 0;font-size:14px;color:#4b5563;">New cash on delivery order for admin processing</p>
             </td>
           </tr>
           <tr>
             <td style="padding:20px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
-                <tr><td style="padding:4px 0;font-size:14px;"><strong>Order ID:</strong> {WebUtility.HtmlEncode(order.OrderNumber)}</td></tr>
+                <tr><td style="padding:4px 0;font-size:14px;"><strong>Order Number:</strong> {WebUtility.HtmlEncode(order.OrderNumber)}</td></tr>
                 <tr><td style="padding:4px 0;font-size:14px;"><strong>Order Date:</strong> {order.CreatedAt:yyyy-MM-dd HH:mm} UTC</td></tr>
                 <tr><td style="padding:4px 0;font-size:14px;"><strong>Customer Name:</strong> {WebUtility.HtmlEncode(order.CustomerName)}</td></tr>
                 <tr><td style="padding:4px 0;font-size:14px;"><strong>Customer Email:</strong> {WebUtility.HtmlEncode(order.CustomerEmail)}</td></tr>
+                <tr><td style="padding:4px 0;font-size:14px;"><strong>Customer Phone:</strong> {WebUtility.HtmlEncode(order.CustomerPhone)}</td></tr>
                 <tr><td style="padding:4px 0;font-size:14px;"><strong>Shipping Address:</strong> {WebUtility.HtmlEncode(fullAddress)}</td></tr>
-                <tr><td style="padding:4px 0;font-size:14px;"><strong>Payment Method:</strong> {WebUtility.HtmlEncode(order.PaymentMethod)}</td></tr>
+                <tr><td style="padding:4px 0;font-size:14px;"><strong>Payment Method:</strong> Cash on Delivery (COD)</td></tr>
               </table>
             </td>
           </tr>
@@ -91,6 +92,9 @@ public class OrderNotificationService(
                   </td>
                 </tr>
               </table>
+              <p style="margin:16px 0 0;font-size:14px;line-height:1.5;color:#374151;">
+                <strong>Admin Action Required:</strong> This order is marked as <strong>Cash on Delivery</strong>. Please prepare shipment and dispatch to the address above.
+              </p>
             </td>
           </tr>
         </table>

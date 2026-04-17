@@ -55,20 +55,22 @@ html.dark :host {
 }
 
 /* Submenu wrapper - FIX FOR DROPDOWN VISIBILITY */
-:host ::ng-deep div.group\/nav {
+:host ::ng-deep div.group\/nav,
+:host ::ng-deep div.group\/sub,
+:host ::ng-deep div.group\/invicta {
   position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
 
-  &:hover .submenu-wrapper {
+  &:hover .submenu-wrapper,
+  &:focus-within .submenu-wrapper {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
   }
-}
 
-:host ::ng-deep div.group\/sub {
-  position: relative;
-
-  &:hover .submenu-wrapper {
+  & > a:hover ~ .submenu-wrapper {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
@@ -145,7 +147,7 @@ html.dark :host {
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: #e1b96e !important;
+    background-color: transparent !important;
     color: var(--nav-hover) !important;
   }
 }
