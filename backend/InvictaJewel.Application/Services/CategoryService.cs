@@ -17,6 +17,13 @@ public class CategoryService(
         return BuildTree(dtos);
     }
 
+    public async Task<IReadOnlyList<CategoryDto>> GetAdminHierarchyAsync(CancellationToken cancellationToken = default)
+    {
+        var flat = await categories.GetAllNonDeletedFlatAsync(cancellationToken);
+        var dtos = mapper.Map<List<CategoryDto>>(flat);
+        return BuildTree(dtos);
+    }
+
     public async Task<CategoryDto?> GetByIdAsync(int id, bool includeProducts, bool admin = false, CancellationToken cancellationToken = default)
     {
         var entity = await categories.GetByIdAsync(id, admin, cancellationToken);
@@ -84,6 +91,14 @@ public class CategoryService(
         var entity = await categories.GetByIdAsync(id, includeDeleted: true, cancellationToken);
         if (entity is null || entity.IsDeleted)
             return null;
+        if (dto.ParentCategoryId == id)
+            throw new ArgumentException("A category cannot be its own parent.");
+        if (dto.ParentCategoryId is { } newParentId)
+        {
+            var descendants = await categories.GetDescendantCategoryIdsAsync(id, cancellationToken);
+            if (descendants.Contains(newParentId))
+                throw new ArgumentException("Parent cannot be a descendant of this category.");
+        }
         entity.Name = dto.Name;
         entity.Slug = dto.Slug;
         entity.ParentCategoryId = dto.ParentCategoryId;

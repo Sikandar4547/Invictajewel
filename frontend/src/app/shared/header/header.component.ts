@@ -9,9 +9,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CategoryService } from '../../core/services/category.service';
 import { CartService } from '../../core/services/cart.service';
-import { ThemeService } from '../../core/services/theme.service';
+import { AuthService } from '../../core/services/auth.service';
 import { CategoryDto } from '../../models/api.types';
 import { categoryDescendantSlugs } from '../../core/utils/category-tree.util';
+import { getImageUrl } from '../../core/utils/image-url.util';
 import { filter, map, merge, of, startWith } from 'rxjs';
 
 @Component({
@@ -35,7 +36,8 @@ export class HeaderComponent {
   private readonly categoriesApi = inject(CategoryService);
   private readonly cartApi = inject(CartService);
   private readonly router = inject(Router);
-  readonly themeService = inject(ThemeService);
+  private readonly auth = inject(AuthService);
+  protected readonly getImageUrl = getImageUrl;
 
   readonly categories$ = this.categoriesApi.activeTree();
 
@@ -45,6 +47,7 @@ export class HeaderComponent {
   );
 
   readonly mobileMenuOpen = signal(false);
+  readonly isLoggedIn = signal(this.auth.isAuthenticated());
 
   readonly activeSlug = toSignal(
     merge(
@@ -91,5 +94,13 @@ export class HeaderComponent {
   private categorySlugFromUrl(url: string): string | null {
     const m = url.match(/\/category\/([^/?#]+)/);
     return m ? decodeURIComponent(m[1]) : null;
+  }
+
+  onAdminClick(): void {
+    if (this.auth.isAuthenticated()) {
+      this.router.navigateByUrl('/admin/dashboard');
+    } else {
+      this.router.navigateByUrl('/admin/login');
+    }
   }
 }

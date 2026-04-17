@@ -71,12 +71,12 @@ public class ProductService(
     {
         var entity = new Product
         {
-            Name = dto.Name,
-            Slug = dto.Slug,
+            Name = dto.Name.Trim(),
+            Slug = dto.Slug.Trim(),
             Description = dto.Description,
             RegularPrice = dto.RegularPrice,
             SalePrice = dto.SalePrice,
-            SKU = dto.SKU,
+            SKU = dto.SKU.Trim(),
             StockQuantity = dto.StockQuantity,
             IsActive = dto.IsActive,
             IsFeatured = dto.IsFeatured,
@@ -84,7 +84,17 @@ public class ProductService(
             MetaTitle = dto.MetaTitle,
             MetaDescription = dto.MetaDescription
         };
-        SyncCategories(entity, dto.CategoryIds, dto.PrimaryCategoryId);
+        SyncCategories(entity, dto);
+        if (!string.IsNullOrWhiteSpace(dto.ImageUrl))
+        {
+            entity.Images.Add(new ProductImage
+            {
+                ImageUrl = dto.ImageUrl.Trim(),
+                IsPrimary = true,
+                DisplayOrder = 0,
+                AltText = entity.Name
+            });
+        }
         await products.AddAsync(entity, cancellationToken);
         await products.SaveChangesAsync(cancellationToken);
         var reloaded = await products.GetByIdAsync(entity.Id, includeDeleted: true, cancellationToken) ?? entity;
@@ -96,12 +106,12 @@ public class ProductService(
         var entity = await products.GetByIdAsync(id, includeDeleted: true, cancellationToken);
         if (entity is null || entity.IsDeleted)
             return null;
-        entity.Name = dto.Name;
-        entity.Slug = dto.Slug;
+        entity.Name = dto.Name.Trim();
+        entity.Slug = dto.Slug.Trim();
         entity.Description = dto.Description;
         entity.RegularPrice = dto.RegularPrice;
         entity.SalePrice = dto.SalePrice;
-        entity.SKU = dto.SKU;
+        entity.SKU = dto.SKU.Trim();
         entity.StockQuantity = dto.StockQuantity;
         entity.IsActive = dto.IsActive;
         entity.IsFeatured = dto.IsFeatured;
@@ -110,7 +120,11 @@ public class ProductService(
         entity.MetaDescription = dto.MetaDescription;
         entity.UpdatedAt = DateTime.UtcNow;
         entity.ProductCategories.Clear();
-        SyncCategories(entity, dto.CategoryIds, dto.PrimaryCategoryId);
+        SyncCategories(entity, dto);
+
+        if (dto.ImageUrl != null)
+            ApplyImageUrlUpdate(entity, dto.ImageUrl);
+
         products.Update(entity);
         await products.SaveChangesAsync(cancellationToken);
         var reloaded = await products.GetByIdAsync(id, includeDeleted: true, cancellationToken);
@@ -148,6 +162,8 @@ public class ProductService(
         var entity = await products.GetByIdAsync(id, includeDeleted: false, cancellationToken);
         if (entity is null)
             return false;
+        if (salePrice > entity.RegularPrice)
+            return false;
         entity.SalePrice = salePrice;
         entity.UpdatedAt = DateTime.UtcNow;
         products.Update(entity);
@@ -171,14 +187,18 @@ public class ProductService(
     {
         var entity = await products.GetByIdAsync(productId, includeDeleted: true, cancellationToken)
             ?? throw new InvalidOperationException("Product not found.");
+        foreach (var img in entity.Images.ToList())
+        {
+            imageStorage.TryDeleteStoredFile(img.ImageUrl);
+            entity.Images.Remove(img);
+        }
         var url = await imageStorage.SaveProductImageAsync(fileStream, fileName, productId, cancellationToken);
-        var order = entity.Images.Count;
         entity.Images.Add(new ProductImage
         {
             ProductId = productId,
             ImageUrl = url,
-            IsPrimary = order == 0,
-            DisplayOrder = order,
+            IsPrimary = true,
+            DisplayOrder = 0,
             AltText = entity.Name
         });
         entity.UpdatedAt = DateTime.UtcNow;
@@ -187,11 +207,47 @@ public class ProductService(
         return new UploadProductImageResultDto { ImageUrl = url };
     }
 
-    private static void SyncCategories(Product entity, List<int> categoryIds, int? primaryCategoryId)
+    private void ApplyImageUrlUpdate(Product entity, string? imageUrlFromDto)
     {
-        var primary = primaryCategoryId ?? categoryIds.FirstOrDefault();
+        var primary = entity.Images
+            .OrderByDescending(i => i.IsPrimary)
+            .ThenBy(i => i.DisplayOrder)
+            .Select(i => i.ImageUrl)
+            .FirstOrDefault();
+        if (string.IsNullOrWhiteSpace(imageUrlFromDto))
+        {
+            foreach (var img in entity.Images.ToList())
+            {
+                imageStorage.TryDeleteStoredFile(img.ImageUrl);
+                entity.Images.Remove(img);
+            }
+            return;
+        }
+        var trimmed = imageUrlFromDto.Trim();
+        if (string.Equals(trimmed, primary, StringComparison.OrdinalIgnoreCase))
+            return;
+        foreach (var img in entity.Images.ToList())
+        {
+            imageStorage.TryDeleteStoredFile(img.ImageUrl);
+            entity.Images.Remove(img);
+        }
+        entity.Images.Add(new ProductImage
+        {
+            ImageUrl = trimmed,
+            IsPrimary = true,
+            DisplayOrder = 0,
+            AltText = entity.Name
+        });
+    }
+
+    private static void SyncCategories(Product entity, CreateProductDto dto)
+    {
+        var categoryIds = dto.CategoryIds?.Where(x => x > 0).Distinct().ToList() ?? new List<int>();
+        if (categoryIds.Count == 0 && dto.CategoryId is { } single && single > 0)
+            categoryIds.Add(single);
+        var primary = dto.PrimaryCategoryId ?? categoryIds.FirstOrDefault();
         var order = 0;
-        foreach (var cid in categoryIds.Distinct())
+        foreach (var cid in categoryIds)
         {
             entity.ProductCategories.Add(new ProductCategory
             {

@@ -7,8 +7,8 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     <!-- Contact Us Section -->
-    <section class="mt-16 bg-white dark:bg-dark-bg-secondary text-jewel-charcoal dark:text-dark-text">
-      <div class="max-w-6xl mx-auto px-4 py-12">
+    <section class="mt-16 bg-app-card text-app-ink border-t border-app-border">
+      <div class="ij-page py-12">
         <h2 class="text-center text-2xl md:text-3xl font-display text-jewel-gold dark:text-jewel-gold-light mb-4">CONTACT US!</h2>
         
         <!-- Contact Cards Grid -->
@@ -16,7 +16,7 @@ import { RouterLink } from '@angular/router';
           <!-- 24/7 Support -->
           <button
             (click)="openWhatsApp()"
-            class="flex flex-col items-center justify-center p-4 md:p-6 rounded-full border-2 border-jewel-charcoal/20 dark:border-dark-border hover:border-jewel-gold dark:hover:border-jewel-gold-light transition-all hover:bg-jewel-gold/5 dark:hover:bg-jewel-gold-light/5"
+            class="flex flex-col items-center justify-center p-4 md:p-6 rounded-full border-2 border-app-border hover:border-app-accent transition-all hover:bg-app-field"
           >
             <div class="text-3xl md:text-4xl mb-2">⏰</div>
             <p class="font-semibold text-sm md:text-base mb-1">24/7 Support</p>
@@ -26,7 +26,7 @@ import { RouterLink } from '@angular/router';
           <!-- Mail Us -->
           <button
             (click)="openEmail()"
-            class="flex flex-col items-center justify-center p-4 md:p-6 rounded-full border-2 border-jewel-charcoal/20 dark:border-dark-border hover:border-jewel-gold dark:hover:border-jewel-gold-light transition-all hover:bg-jewel-gold/5 dark:hover:bg-jewel-gold-light/5"
+            class="flex flex-col items-center justify-center p-4 md:p-6 rounded-full border-2 border-app-border hover:border-app-accent transition-all hover:bg-app-field"
           >
             <div class="text-3xl md:text-4xl mb-2">💬</div>
             <p class="font-semibold text-sm md:text-base mb-1">Mail Us</p>
@@ -36,7 +36,7 @@ import { RouterLink } from '@angular/router';
           <!-- Whatsapp Us -->
           <button
             (click)="openWhatsApp()"
-            class="flex flex-col items-center justify-center p-4 md:p-6 rounded-full border-2 border-jewel-charcoal/20 dark:border-dark-border hover:border-jewel-gold dark:hover:border-jewel-gold-light transition-all hover:bg-jewel-gold/5 dark:hover:bg-jewel-gold-light/5"
+            class="flex flex-col items-center justify-center p-4 md:p-6 rounded-full border-2 border-app-border hover:border-app-accent transition-all hover:bg-app-field"
           >
             <div class="text-3xl md:text-4xl mb-2">💬</div>
             <p class="font-semibold text-sm md:text-base mb-1">Whatsapp Us</p>
@@ -46,7 +46,7 @@ import { RouterLink } from '@angular/router';
           <!-- Find Us -->
           <button
             (click)="openMap()"
-            class="flex flex-col items-center justify-center p-4 md:p-6 rounded-full border-2 border-jewel-charcoal/20 dark:border-dark-border hover:border-jewel-gold dark:hover:border-jewel-gold-light transition-all hover:bg-jewel-gold/5 dark:hover:bg-jewel-gold-light/5"
+            class="flex flex-col items-center justify-center p-4 md:p-6 rounded-full border-2 border-app-border hover:border-app-accent transition-all hover:bg-app-field"
           >
             <div class="text-3xl md:text-4xl mb-2">📍</div>
             <p class="font-semibold text-sm md:text-base mb-1">Find Us</p>
@@ -56,32 +56,32 @@ import { RouterLink } from '@angular/router';
       </div>
     </section>
 
-    <footer class="mt-16 border-t border-jewel-rose/40 dark:border-dark-border bg-jewel-charcoal dark:bg-dark-bg text-jewel-cream dark:text-dark-text">
-      <div class="max-w-6xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3 text-sm">
+    <footer class="mt-16 border-t border-app-border bg-jewel-charcoal text-jewel-cream dark:bg-app-card dark:text-app-ink">
+      <div class="ij-page py-10 grid gap-8 md:grid-cols-3 text-sm">
         <div>
-          <p class="font-display text-xl text-jewel-rose dark:text-jewel-gold-light mb-2">Invicta Jewel</p>
-          <p class="opacity-80 dark:opacity-70">Handpicked jewelry with transparent pricing and cash-on-delivery convenience.</p>
+          <p class="font-display text-xl text-jewel-rose dark:text-app-accent mb-2">Invicta Jewel</p>
+          <p class="opacity-80 dark:text-app-ink-muted">Handpicked jewelry with transparent pricing and cash-on-delivery convenience.</p>
         </div>
         <div>
           <p class="font-semibold mb-2">Shop</p>
-          <a routerLink="/category/rings" class="block opacity-80 dark:opacity-70 hover:text-jewel-gold dark:hover:text-jewel-gold-light transition-colors">Rings</a>
-          <a routerLink="/category/necklaces" class="block opacity-80 dark:opacity-70 hover:text-jewel-gold dark:hover:text-jewel-gold-light transition-colors">Necklaces</a>
-          <a routerLink="/track-order" class="block opacity-80 dark:opacity-70 hover:text-jewel-gold dark:hover:text-jewel-gold-light transition-colors">Track order</a>
+          <a routerLink="/category/rings" class="block opacity-80 hover:opacity-100 hover:text-jewel-rose dark:hover:text-app-accent transition-colors">Rings</a>
+          <a routerLink="/category/necklaces" class="block opacity-80 hover:opacity-100 hover:text-jewel-rose dark:hover:text-app-accent transition-colors">Necklaces</a>
+          <a routerLink="/track-order" class="block opacity-80 hover:opacity-100 hover:text-jewel-rose dark:hover:text-app-accent transition-colors">Track order</a>
         </div>
         <div>
           <p class="font-semibold mb-2">Newsletter</p>
-          <p class="opacity-80 dark:opacity-70 mb-2">Join for new arrivals and private sales.</p>
-          <div class="flex gap-2">
+          <p class="opacity-80 dark:text-app-ink-muted mb-2">Join for new arrivals and private sales.</p>
+          <div class="flex flex-col sm:flex-row gap-2">
             <input
               type="email"
               placeholder="Email"
-              class="flex-1 rounded-md px-3 py-2 text-jewel-text dark:text-dark-text dark:bg-dark-bg border dark:border-dark-border"
+              class="ij-native-input flex-1 min-w-0"
             />
             <button type="button" class="rounded-md bg-jewel-gold hover:bg-jewel-gold-dark dark:bg-jewel-gold-light dark:hover:bg-jewel-gold px-4 py-2 text-white dark:text-jewel-charcoal font-medium transition-colors">Join</button>
           </div>
         </div>
       </div>
-      <div class="text-center text-xs opacity-60 dark:opacity-50 py-4 border-t border-white/10 dark:border-dark-border">© {{ year }} Invicta Jewel</div>
+      <div class="text-center text-xs opacity-60 dark:opacity-50 py-4 border-t border-white/10 dark:border-app-border">© {{ year }} Invicta Jewel</div>
     </footer>
   `,
 })

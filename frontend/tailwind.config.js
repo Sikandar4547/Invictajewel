@@ -1,52 +1,72 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,ts}'],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        // Light mode (default)
-        'light-bg': '#FFFFFF',
-        'light-bg-secondary': '#F9F6F0',
-        'light-text': '#1F2937',
-        'light-text-secondary': '#6B7280',
-        'light-border': '#E5E7EB',
-        
-        // Dark mode - improved for better visibility
-        'dark-bg': '#242424',
-        'dark-bg-secondary': '#3A3A3A',
-        'dark-text': '#EEEFF2',
-        'dark-text-secondary': '#D1D5DB',
-        'dark-border': '#515151',
-
+        app: {
+          bg: 'var(--bg)',
+          card: 'var(--card)',
+          ink: 'var(--text)',
+          'ink-muted': 'var(--text-muted)',
+          border: 'var(--border)',
+          field: 'var(--input-bg)',
+          accent: 'var(--accent)',
+        },
         jewel: {
-          gold: '#B76E2E',
-          'gold-light': '#D4A574',
-          'gold-dark': '#8B5A1F',
-          charcoal: '#2C2C2C',
-          'charcoal-light': '#404040',
-          rose: '#E8C39E',
-          'rose-light': '#F5E6D3',
-          cream: '#F9F6F0',
-          'cream-dark': '#3A3A3A',
-          text: '#1F2937',
-          'text-light': '#6B7280',
+          gold: '#C9A14A',
+          'gold-light': '#D7B56A',
+          'gold-dark': '#B78D33',
+          ivory: '#FAF9F6',
+          text: '#1A1A1A',
           sale: '#DC2626',
-          'sale-light': '#FEE2E2',
-          accent: '#6366F1',
+          accent: '#C9A14A',
         },
       },
+
       fontFamily: {
         display: ['"Playfair Display"', 'serif'],
-        sans: ['Montserrat', 'system-ui', 'sans-serif'],
-        price: ['Lato', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        price: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
+
+      fontSize: {
+        'luxury-xl': ['2.5rem', { lineHeight: '1.2', fontWeight: '700' }],
+        'luxury-lg': ['2rem', { lineHeight: '1.2', fontWeight: '600' }],
+        'luxury-md': ['1.5rem', { lineHeight: '1.2', fontWeight: '600' }],
+      },
+
       spacing: {
         '18': '4.5rem',
+        '20': '5rem',
+        '28': '7rem',
       },
+
       borderRadius: {
+        'luxury': '8px',
         'xl': '12px',
         '2xl': '16px',
+        '3xl': '20px',
+      },
+
+      boxShadow: {
+        'card': 'var(--shadow-card)',
+        'card-hover': 'var(--shadow-card-hover)',
+      },
+
+      maxWidth: {
+        'content': '80rem',
+        'form': '600px',
+        'product-grid': '1400px',
+      },
+
+      transitionDuration: {
+        '400': '400ms',
+      },
+
+      backdropBlur: {
+        'sm': '4px',
+        'md': '12px',
       },
     },
   },

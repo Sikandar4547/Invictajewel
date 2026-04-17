@@ -1,5 +1,8 @@
 using InvictaJewel.Application.Abstractions.Repositories;
+using InvictaJewel.Application.Abstractions.Messaging;
 using InvictaJewel.Application.Abstractions.Storage;
+using InvictaJewel.Application.Services;
+using InvictaJewel.Infrastructure.Email;
 using InvictaJewel.Infrastructure.Persistence;
 using InvictaJewel.Infrastructure.Repositories;
 using InvictaJewel.Infrastructure.Storage;
@@ -22,11 +25,19 @@ public static class DependencyInjection
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IBannerRepository, BannerRepository>();
         services.AddScoped<ICartRepository, CartRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
 
-        var uploads = Path.Combine(webRootPath, "uploads", "products");
-        services.AddSingleton<IProductImageStorage>(_ => new LocalProductImageStorage(uploads));
+        var productUploads = Path.Combine(webRootPath, "uploads", "products");
+        var bannerUploads = Path.Combine(webRootPath, "uploads", "banners");
+        services.AddSingleton<IProductImageStorage>(_ => new LocalProductImageStorage(productUploads));
+        services.AddSingleton<IBannerImageStorage>(_ => new LocalBannerImageStorage(bannerUploads));
+
+        services.AddOptions<SmtpEmailOptions>().Bind(configuration.GetSection(SmtpEmailOptions.SectionName));
+        services.AddOptions<OrderNotificationOptions>().Bind(configuration.GetSection(OrderNotificationOptions.SectionName));
+        services.AddScoped<IEmailSender, SmtpEmailSender>();
+        services.AddScoped<IOrderNotificationService, OrderNotificationService>();
 
         return services;
     }

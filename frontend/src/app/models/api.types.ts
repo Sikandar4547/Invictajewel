@@ -12,6 +12,24 @@ export interface CategoryDto {
   products?: ProductListDto[] | null;
 }
 
+export interface BannerDto {
+  id: number;
+  title: string;
+  imageUrl: string;
+  linkUrl: string;
+  isActive: boolean;
+  displayOrder: number;
+  createdAt: string;
+}
+
+export interface SaveBannerRequest {
+  title: string;
+  imageUrl: string;
+  linkUrl: string;
+  isActive: boolean;
+  displayOrder: number;
+}
+
 export interface ProductImageDto {
   id: number;
   imageUrl: string;
@@ -24,11 +42,14 @@ export interface ProductListDto {
   id: number;
   name: string;
   slug: string;
+  sku: string;
   regularPrice: number;
   salePrice?: number | null;
   isFeatured: boolean;
   isNew: boolean;
   primaryImageUrl?: string | null;
+  /** Same as primary image (API convenience). */
+  imageUrl?: string | null;
   isOnSale?: boolean;
   isActive?: boolean;
 }
@@ -36,6 +57,7 @@ export interface ProductListDto {
 export interface ProductDetailDto extends ProductListDto {
   description?: string | null;
   sku: string;
+  primaryCategoryId?: number | null;
   stockQuantity: number;
   metaTitle?: string | null;
   metaDescription?: string | null;
@@ -48,6 +70,39 @@ export interface CategorySummaryDto {
   name: string;
   slug: string;
   parentCategoryId?: number | null;
+}
+
+/** Admin create/update category (matches API body). */
+export interface SaveCategoryRequest {
+  name: string;
+  slug: string;
+  parentCategoryId?: number | null;
+  description?: string | null;
+  isActive: boolean;
+  displayOrder: number;
+  imageUrl?: string | null;
+  metadata?: string | null;
+}
+
+/** Admin create/update product (matches API body). */
+export interface SaveProductRequest {
+  name: string;
+  slug: string;
+  description?: string | null;
+  regularPrice: number;
+  salePrice?: number | null;
+  sku: string;
+  stockQuantity: number;
+  isActive: boolean;
+  isFeatured: boolean;
+  isNew: boolean;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  categoryId?: number | null;
+  categoryIds: number[];
+  primaryCategoryId?: number | null;
+  /** Omit on update to leave images unchanged; empty string clears. */
+  imageUrl?: string | null;
 }
 
 export interface PagedResultDto<T> {

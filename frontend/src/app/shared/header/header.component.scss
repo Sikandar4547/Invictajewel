@@ -1,91 +1,371 @@
-/* Header theming */
+/* Header — Luxury Minimal Navigation */
 :host {
-  --dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  --dropdown-border: #f5f3f0;
-  --nav-bg: linear-gradient(to right, #B76E2E, #C97E3A);
+  --nav-bg: linear-gradient(135deg, #C9A96E 0%, #B89860 100%);
   --nav-text: #FFFFFF;
-  --nav-hover: #F9F6F0;
-  --nav-accent: #FFFFFF;
+  --nav-base: #FFFFFF;
+  --nav-hover: #E0C48E;
+  --nav-border: rgba(255, 255, 255, 0.1);
 }
 
 html.dark :host {
-  --dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  --dropdown-border: #515151;
-  --nav-bg: linear-gradient(to right, #8B5A1F, #B76E2E);
-  --nav-text: #FFFFFF;
-  --nav-hover: #F9F6F0;
-  --nav-accent: #F9F6F0;
+  --nav-bg: linear-gradient(135deg, #1F1F1F 0%, #252525 100%);
+  --nav-text: #F5F5F5;
+  --nav-base: #F5F5F5;
+  --nav-hover: #C9A96E;
+  --nav-border: rgba(201, 169, 110, 0.1);
 }
 
-/* Desktop navigation active states */
+/* Host display flex for proper layout */
+:host {
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--nav-border);
+
+}
+
+/* Navigation links */
+:host ::ng-deep .nav-link {
+  color: var(--nav-text) !important;
+  font-weight: 500;
+  padding: 8px 16px !important;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--nav-hover) !important;
+  }
+}
+
+/* Active navigation link */
 :host ::ng-deep .nav-link-active {
-  color: #F9F6F0 !important;
-  border-bottom: 3px solid #FFFFFF;
-  padding-bottom: 3px !important;
+  color: var(--nav-hover) !important;
+  font-weight: 700;
+  border-bottom: 3px solid var(--nav-hover);
+  padding-bottom: 5px !important;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 :host ::ng-deep .nav-link-active .mdc-button__label {
-  color: #F9F6F0 !important;
+  color: white !important;
 }
 
-:host ::ng-deep .nav-link-active.mat-mdc-button .mat-mdc-button-persistent-ripple::before {
-  border-bottom: 3px solid #FFFFFF;
+/* Submenu wrapper - FIX FOR DROPDOWN VISIBILITY */
+:host ::ng-deep div.group\/nav {
+  position: relative;
+
+  &:hover .submenu-wrapper {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+}
+
+:host ::ng-deep div.group\/sub {
+  position: relative;
+
+  &:hover .submenu-wrapper {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* Submenu wrapper styling */
+:host ::ng-deep .submenu-wrapper {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+/* Submenu content - explicit white background for contrast */
+:host ::ng-deep .submenu-content {
+  background-color: #FFFFFF !important;
+  color: #111111 !important;
+  border: 1px solid #E5E5E5 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Submenu items - dark text on white background */
+:host ::ng-deep .submenu-item {
+  color: #111111 !important;
+  background-color: #FFFFFF !important;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #F5F5F5 !important;
+    color: #C9A96E !important;
+  }
+
+  &.nav-sublink-active {
+    background-color: rgba(201, 169, 110, 0.1) !important;
+    color: #C9A96E !important;
+    font-weight: 700;
+  }
 }
 
 /* Submenu active states */
 :host ::ng-deep .nav-sublink-active {
-  color: #B76E2E !important;
-  font-weight: 600;
-  background-color: rgba(232, 195, 158, 0.3) !important;
-  border-left: 3px solid #B76E2E;
-  padding-left: calc(1.25rem - 3px) !important;
+  color: #C9A96E !important;
+  font-weight: 700;
+  background-color: rgba(201, 169, 110, 0.1) !important;
+  border-left: 4px solid #C9A96E;
+  padding-left: calc(1.25rem - 4px) !important;
+  border-radius: 0;
 }
 
-html.dark :host ::ng-deep .nav-sublink-active {
-  color: #B76E2E !important;
-  background-color: rgba(183, 110, 46, 0.15) !important;
-  border-left-color: #D4A574;
-}
-
-/* Mobile navigation active state */
-:host ::ng-deep .nav-mobile-active {
-  color: #B76E2E !important;
-  background-color: rgba(183, 110, 46, 0.08);
-}
-
-html.dark :host ::ng-deep .nav-mobile-active {
-  background-color: rgba(212, 165, 116, 0.1);
-}
-
-/* Dropdown menu improvements */
-:host ::ng-deep div[class*="bg-white"] {
-  box-shadow: var(--dropdown-shadow);
-}
-
-/* Dropdown dark mode fix */
-html.dark :host ::ng-deep div.bg-white {
-  @apply bg-dark-bg-secondary text-dark-text !important;
-}
-
-html.dark :host ::ng-deep .text-jewel-charcoal {
-  @apply text-dark-text !important;
-}
-
-html.dark :host ::ng-deep .border-neutral-150 {
-  @apply border-dark-border !important;
-}
-
-/* Icon color fix */
+/* Icons */
 :host ::ng-deep .mat-icon {
   color: inherit;
+  transition: color 0.2s ease;
+}
+
+:host ::ng-deep a:hover .mat-icon {
+  color: var(--nav-hover) !important;
 }
 
 /* Badge styling */
 :host ::ng-deep .mat-badge-content {
-  @apply bg-jewel-sale text-white;
+  background-color: #DC2626 !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+  font-size: 0.75rem;
 }
 
-/* Hover effects */
-:host ::ng-deep a:hover .mat-icon {
-  @apply text-jewel-cream dark:text-jewel-cream;
+/* Button styling inside header */
+:host ::ng-deep .mat-mdc-button,
+:host ::ng-deep .mat-mdc-icon-button {
+  color: var(--nav-text) !important;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #e1b96e !important;
+    color: var(--nav-hover) !important;
+  }
+}
+
+/* Text styling */
+:host ::ng-deep .header-text {
+  color: var(--nav-text);
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Search input styling */
+:host ::ng-deep input.header-search {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--nav-text) !important;
+  border: 1px solid var(--nav-border) !important;
+  border-radius: 20px;
+  padding: 8px 16px !important;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: var(--nav-hover) !important;
+  }
+}
+
+/* Enhanced category header styling */
+:host ::ng-deep nav a[mat-button] {
+  color: var(--nav-text) !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--nav-hover);
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: white !important;
+    
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+/* Enhanced submenu wrapper styling - all submenus hidden by default */
+:host ::ng-deep .submenu-wrapper {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+/* Level 2 submenu wrapper - override Tailwind min-w constraint to allow flex row to expand */
+:host ::ng-deep .submenu-wrapper .submenu-wrapper {
+  min-width: max-content !important;
+  width: auto !important;
+}
+
+/* Submenu content - level 1 (direct children under main category) */
+:host ::ng-deep .submenu-wrapper > .submenu-content {
+  background-color: #FFFFFF !important;
+  color: #111111 !important;
+  border: 1px solid #E5E5E5 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 12px !important;
+  padding: 8px 0 !important;
+  display: flex;
+  flex-direction: column;
+  max-width: 280px;
+  min-width: 200px;
+}
+
+/* Submenu content - level 2 and beyond (nested submenu items) */
+:host ::ng-deep .submenu-wrapper .submenu-wrapper > .submenu-content {
+  background-color: #FFFFFF !important;
+  color: #111111 !important;
+  border: 1px solid #E5E5E5 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 10px !important;
+  padding: 8px 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 200px;
+  width: auto;
+}
+
+/* Submenu items - improved styling */
+:host ::ng-deep .submenu-item {
+  color: #111111 !important;
+  background-color: #FFFFFF !important;
+  transition: all 0.2s ease;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  text-align: left;
+  white-space: normal;
+  word-break: break-word;
+
+  &:hover {
+    background-color: #F9F7F3 !important;
+    color: #C9A96E !important;
+  }
+
+  &.nav-sublink-active {
+    background-color: rgba(201, 169, 110, 0.08) !important;
+    color: #C9A96E !important;
+    font-weight: 700;
+  }
+}
+
+/* Level 1 submenu items (direct children) */
+:host ::ng-deep .submenu-wrapper > .submenu-content .submenu-item {
+  padding: 12px 18px !important;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    padding-left: calc(1rem + 4px) !important;
+    border-left: 3px solid #C9A96E;
+  }
+
+  &.nav-sublink-active {
+    border-left: 3px solid #C9A96E;
+    padding-left: calc(1rem + 1px) !important;
+  }
+}
+
+/* Level 2 submenu items (grandchildren) - override level 1 styles */
+:host ::ng-deep .submenu-wrapper .submenu-wrapper > .submenu-content .submenu-item {
+  padding: 12px 16px !important;
+  font-size: 0.9rem;
+  font-weight: 400;
+  display: block !important;
+  justify-content: unset !important;
+  align-items: unset !important;
+  white-space: normal;
+  width: 100%;
+  text-align: left;
+
+  &:hover {
+    padding-left: 16px !important;
+    border-left: none;
+  }
+
+  &.nav-sublink-active {
+    border-left: none;
+    padding-left: 16px !important;
+  }
+}
+
+/* Remove conflicting grid behavior */
+:host ::ng-deep .submenu-wrapper .submenu-wrapper {
+  border-radius: 10px;
+}
+
+/* Dropdown arrow styling */
+:host ::ng-deep .submenu-item .leading-none {
+  color: #C9A96E;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+:host ::ng-deep .submenu-item:hover .leading-none {
+  color: #D4B08E;
+  transform: translateX(2px);
+}
+
+/* Hide ALL level 2 submenus by default (they are nested .submenu-wrapper inside level 1 content) */
+:host ::ng-deep .submenu-wrapper > .submenu-content .submenu-wrapper {
+  display: none !important;
+}
+
+/* Show level 1 submenus on main category hover - DIRECT CHILD ONLY (not descendants) */
+:host ::ng-deep div.group\/nav:hover > .submenu-wrapper {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  animation: slideDown 0.3s ease;
+}
+
+/* Show level 2 submenus on level 1 item hover - DIRECT CHILD ONLY (not descendants) */
+:host ::ng-deep div.group\/sub:hover > .submenu-wrapper {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  animation: slideDown 0.3s ease;
+}
+
+/* Explicitly hide level 2 submenus when parent is NOT hovered */
+:host ::ng-deep .submenu-wrapper > .submenu-content .group\/sub:not(:hover) > .submenu-wrapper {
+  display: none !important;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

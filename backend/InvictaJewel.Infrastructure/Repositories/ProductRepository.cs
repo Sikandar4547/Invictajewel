@@ -63,7 +63,7 @@ public class ProductRepository(ApplicationDbContext db) : IProductRepository
         };
 
         var total = await query.CountAsync(cancellationToken);
-        var pageSizeClamped = Math.Clamp(pageSize, 1, 100);
+        var pageSizeClamped = Math.Clamp(pageSize, 1, 500);
         var pageClamped = Math.Max(page, 1);
 
         var items = await query

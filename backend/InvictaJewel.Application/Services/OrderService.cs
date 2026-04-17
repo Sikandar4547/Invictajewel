@@ -3,10 +3,17 @@ using InvictaJewel.Application.Abstractions.Repositories;
 using InvictaJewel.Application.DTOs;
 using InvictaJewel.Domain.Common;
 using InvictaJewel.Domain.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace InvictaJewel.Application.Services;
 
-public class OrderService(ICartRepository carts, IOrderRepository orders, IProductRepository products, IMapper mapper) : IOrderService
+public class OrderService(
+    ICartRepository carts,
+    IOrderRepository orders,
+    IProductRepository products,
+    IOrderNotificationService orderNotificationService,
+    IMapper mapper,
+    ILogger<OrderService> logger) : IOrderService
 {
     public async Task<OrderDetailDto> CreateFromCartAsync(CreateOrderDto dto, CancellationToken cancellationToken = default)
     {
@@ -61,6 +68,14 @@ public class OrderService(ICartRepository carts, IOrderRepository orders, IProdu
         await orders.SaveChangesAsync(cancellationToken);
 
         var reloaded = await orders.GetByOrderNumberAsync(order.OrderNumber, cancellationToken) ?? order;
+        try
+        {
+            await orderNotificationService.SendAdminShipmentReceiptAsync(reloaded, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to send shipment receipt email for order {OrderNumber}", reloaded.OrderNumber);
+        }
         return mapper.Map<OrderDetailDto>(reloaded);
     }
 

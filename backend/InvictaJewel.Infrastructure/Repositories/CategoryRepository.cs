@@ -14,6 +14,14 @@ public class CategoryRepository(ApplicationDbContext db) : ICategoryRepository
             .OrderBy(c => c.DisplayOrder)
             .ToListAsync(cancellationToken);
 
+    public async Task<IReadOnlyList<Category>> GetAllNonDeletedFlatAsync(CancellationToken cancellationToken = default) =>
+        await db.Categories
+            .AsNoTracking()
+            .Where(c => !c.IsDeleted)
+            .OrderBy(c => c.DisplayOrder)
+            .ThenBy(c => c.Name)
+            .ToListAsync(cancellationToken);
+
     public async Task<Category?> GetByIdAsync(int id, bool includeDeleted, CancellationToken cancellationToken = default)
     {
         var query = db.Categories.AsQueryable();

@@ -1,124 +1,102 @@
 @if (state$ | async; as state) {
   @if (state.kind === 'loading') {
-    <div class="max-w-6xl mx-auto px-4 py-8 bg-white dark:bg-dark-bg text-light-text dark:text-dark-text min-h-screen">
-      <div class="h-10 w-64 bg-neutral-200 dark:bg-dark-border rounded animate-pulse mb-6"></div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    <div class="ij-page py-8 bg-app-bg text-app-ink min-h-screen">
+      <div class="h-10 w-64 bg-app-border/60 rounded animate-pulse mb-6"></div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         @for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track _) {
-          <div class="rounded-xl overflow-hidden shadow-md bg-white dark:bg-dark-bg-secondary">
-            <div class="aspect-square bg-neutral-200 dark:bg-dark-border animate-pulse"></div>
-            <div class="p-3 space-y-2">
-              <div class="h-4 bg-neutral-200 dark:bg-dark-border rounded animate-pulse w-3/4"></div>
-              <div class="h-4 bg-neutral-200 dark:bg-dark-border rounded animate-pulse w-1/2"></div>
-              <div class="h-9 bg-neutral-200 dark:bg-dark-border rounded animate-pulse mt-2"></div>
+          <div class="rounded-xl overflow-hidden shadow-card bg-app-card border border-app-border">
+            <div class="aspect-[4/5] sm:aspect-[3/4] bg-app-border/50 animate-pulse"></div>
+            <div class="p-4 space-y-2">
+              <div class="h-4 bg-app-border/60 rounded animate-pulse w-3/4"></div>
+              <div class="h-4 bg-app-border/60 rounded animate-pulse w-1/2"></div>
+              <div class="h-10 bg-app-border/60 rounded animate-pulse mt-2"></div>
             </div>
           </div>
         }
       </div>
     </div>
   } @else if (state.kind === 'error') {
-    <div class="max-w-6xl mx-auto px-4 py-16 text-center bg-white dark:bg-dark-bg text-light-text dark:text-dark-text min-h-screen">
-      <p class="font-display text-2xl text-jewel-charcoal dark:text-dark-text">Category not found</p>
-      <a routerLink="/" class="inline-block mt-4 text-jewel-gold dark:text-jewel-gold-light underline">Return home</a>
+    <div class="ij-page py-16 text-center bg-app-bg text-app-ink min-h-screen">
+      <p class="font-display text-2xl text-app-ink">Category not found</p>
+      <a routerLink="/" class="inline-block mt-4 text-app-accent underline hover:no-underline">Return home</a>
     </div>
   } @else {
-    <div class="bg-white dark:bg-dark-bg text-light-text dark:text-dark-text min-h-screen">
-      <div class="max-w-6xl mx-auto px-4 py-8">
+    <div class="bg-app-bg text-app-ink min-h-screen">
+      <div class="ij-page py-8">
         <!-- Breadcrumb -->
-        <nav class="text-sm text-neutral-600 dark:text-dark-text-secondary mb-4 flex flex-wrap gap-x-2 gap-y-1 items-center" aria-label="Breadcrumb">
-          <a routerLink="/" class="hover:text-jewel-gold">Home</a>
+        <nav class="text-sm text-app-ink-muted mb-4 flex flex-wrap gap-x-2 gap-y-1 items-center" aria-label="Breadcrumb">
+          <a routerLink="/" class="hover:text-app-accent transition-colors">Home</a>
           @for (crumb of state.breadcrumb; track crumb.id; let last = $last) {
-            <span class="text-neutral-400 dark:text-dark-border" aria-hidden="true">&gt;</span>
+            <span class="text-app-border" aria-hidden="true">&gt;</span>
             @if (last) {
-              <span class="text-jewel-charcoal dark:text-dark-text font-medium">{{ crumb.name }}</span>
+              <span class="text-app-ink font-medium">{{ crumb.name }}</span>
             } @else {
-              <a [routerLink]="['/category', crumb.slug]" class="hover:text-jewel-gold">{{ crumb.name }}</a>
+              <a [routerLink]="['/category', crumb.slug]" class="hover:text-app-accent transition-colors">{{ crumb.name }}</a>
             }
           }
         </nav>
 
         <!-- Header section -->
-        <div class="mb-8">
-          <h1 class="font-display text-4xl text-jewel-charcoal dark:text-dark-text">{{ state.category.name }}</h1>
+        <div class="mb-8 md:mb-10">
+          <h1 class="font-display text-4xl text-app-ink">{{ state.category.name }}</h1>
           @if (state.category.description) {
-            <p class="text-neutral-600 dark:text-dark-text-secondary mt-2 max-w-3xl">{{ state.category.description }}</p>
+            <p class="text-app-ink-muted mt-2 max-w-3xl leading-relaxed">{{ state.category.description }}</p>
           }
         </div>
 
-        <!-- Sidebar and product grid -->
-        <div class="grid md:grid-cols-[200px_1fr] gap-8">
-          <!-- Left Sidebar - Categories -->
-          <aside class="space-y-6">
-            <div>
-              <p class="font-display text-lg text-jewel-charcoal dark:text-dark-text mb-3">Categories</p>
-              @if (state.category.children.length) {
-                <div class="flex flex-col gap-1">
-                  @for (ch of state.category.children; track ch.id) {
-                    <a [routerLink]="['/category', ch.slug]" class="text-sm py-2 px-3 rounded hover:bg-jewel-cream dark:hover:bg-dark-bg-secondary text-light-text dark:text-dark-text transition">
-                      {{ ch.name }}
-                    </a>
-                  }
-                </div>
-              }
-            </div>
-          </aside>
+        <!-- Sort dropdown at top -->
+        <div class="flex items-end justify-end">
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full md:w-56">
+            <mat-label>Sort by</mat-label>
+            <mat-select [(ngModel)]="sortBy" (selectionChange)="onSortChange()">
+              <mat-option value="newest">Newest</mat-option>
+              <mat-option value="price-asc">Price (Low to High)</mat-option>
+              <mat-option value="price-desc">Price (High to Low)</mat-option>
+              <mat-option value="name">Name (A-Z)</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-          <!-- Right section - Sort + Products -->
-          <div class="space-y-6">
-            <!-- Sort dropdown at top -->
-            <div class="flex items-end justify-end">
-              <mat-form-field appearance="outline" class="w-full md:w-48">
-                <mat-label>Sort by</mat-label>
-                <mat-select [(ngModel)]="sortBy" (selectionChange)="onSortChange()">
-                  <mat-option value="newest">Newest</mat-option>
-                  <mat-option value="price-asc">Price (Low to High)</mat-option>
-                  <mat-option value="price-desc">Price (High to Low)</mat-option>
-                  <mat-option value="name">Name (A-Z)</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-
-            <!-- Products grid -->
-            @if (!state.products.items.length) {
-              <p class="text-neutral-600 dark:text-dark-text-secondary py-12 text-center text-lg">No products found in this category.</p>
-            } @else {
-              <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                @for (p of state.products.items; track p.id) {
-                  <app-product-card [product]="p" />
-                }
-              </div>
-            }
-
-            <!-- Pagination -->
-            @if (state.products.totalPages > 1) {
-              <div class="flex flex-wrap justify-center gap-2 mt-12 items-center">
-                <button mat-stroked-button [disabled]="page$.value <= 1" (click)="prev()" class="dark:text-dark-text dark:border-dark-border">Previous</button>
-                @for (btn of pageButtonList(state.products.totalPages, page$.value); track $index) {
-                  @if (btn === null) {
-                    <span class="px-2 text-neutral-400 dark:text-dark-text-secondary">…</span>
-                  } @else {
-                    <button
-                      mat-stroked-button
-                      [class.bg-jewel-gold]="btn === page$.value"
-                      [class.text-white]="btn === page$.value"
-                      [class.border-jewel-gold]="btn === page$.value"
-                      [class.dark:bg-jewel-gold-light]="btn === page$.value"
-                      [class.dark:border-jewel-gold-light]="btn === page$.value"
-                      [class.dark:text-jewel-charcoal]="btn === page$.value"
-                      [class.dark:text-dark-text]="btn !== page$.value"
-                      [class.dark:border-dark-border]="btn !== page$.value"
-                      (click)="goToPage(btn)"
-                    >
-                      {{ btn }}
-                    </button>
-                  }
-                }
-                <button mat-stroked-button [disabled]="page$.value >= state.products.totalPages" (click)="next(state.products.totalPages)" class="dark:text-dark-text dark:border-dark-border">
-                  Next
-                </button>
-              </div>
+        <!-- Products grid - Full width -->
+        @if (!state.products.items.length) {
+          <p class="text-app-ink-muted py-12 text-center text-lg">No products found in this category.</p>
+        } @else {
+          <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            @for (p of state.products.items; track p.id) {
+              <app-product-card [product]="p" />
             }
           </div>
-        </div>
+        }
+
+        <!-- Pagination -->
+        @if (state.products.totalPages > 1) {
+          <div class="flex flex-wrap justify-center gap-2 mt-12 items-center">
+            <button mat-stroked-button [disabled]="page$.value <= 1" (click)="prev()" class="text-app-ink border-app-border">Previous</button>
+            @for (btn of pageButtonList(state.products.totalPages, page$.value); track $index) {
+              @if (btn === null) {
+                <span class="px-2 text-app-ink-muted">…</span>
+              } @else {
+                <button
+                  mat-stroked-button
+                  [class.bg-jewel-gold]="btn === page$.value"
+                  [class.text-white]="btn === page$.value"
+                  [class.border-jewel-gold]="btn === page$.value"
+                  [class.dark:bg-jewel-gold-light]="btn === page$.value"
+                  [class.dark:border-jewel-gold-light]="btn === page$.value"
+                  [class.dark:text-jewel-charcoal]="btn === page$.value"
+                  [class.text-app-ink]="btn !== page$.value"
+                  [class.border-app-border]="btn !== page$.value"
+                  (click)="goToPage(btn)"
+                >
+                  {{ btn }}
+                </button>
+              }
+            }
+            <button mat-stroked-button [disabled]="page$.value >= state.products.totalPages" (click)="next(state.products.totalPages)" class="text-app-ink border-app-border">
+              Next
+            </button>
+          </div>
+        }
       </div>
     </div>
   }
