@@ -6,9 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { BehaviorSubject, switchMap, map, startWith, catchError, of } from 'rxjs';
+import { BehaviorSubject, switchMap, map, startWith, catchError, of, filter } from 'rxjs';
 import { AdminProductService } from '../../core/services/admin-product.service';
 import { ToastService } from '../../core/services/toast.service';
+import { ConfirmDeleteDialogService } from '../../shared/dialogs/confirm-delete-dialog.service';
 import { getImageUrl } from '../../core/utils/image-url.util';
 import { ProductListDto } from '../../models/api.types';
 
@@ -54,7 +55,7 @@ import { ProductListDto } from '../../models/api.types';
                 <th class="p-3">SKU</th>
                 <th class="p-3">Regular</th>
                 <th class="p-3">Sale</th>
-                <th class="p-3">Active</th>
+                <th class="p-3">Status</th>
                 <th class="p-3 text-right">Actions</th>
               </tr>
             </thead>
@@ -72,10 +73,12 @@ import { ProductListDto } from '../../models/api.types';
                   <td class="p-3 text-app-ink-muted font-mono text-xs">{{ p.sku }}</td>
                   <td class="p-3">{{ p.regularPrice | number: '1.2-2' }}</td>
                   <td class="p-3">{{ p.salePrice != null ? (p.salePrice | number: '1.2-2') : '—' }}</td>
-                  <td class="p-3">{{ p.isActive ? 'Yes' : 'No' }}</td>
-                  <td class="p-3 text-right space-x-1">
-                    <a mat-button [routerLink]="['/admin/products', p.id]">Edit</a>
-                    <button mat-button color="warn" type="button" (click)="remove(p)">Delete</button>
+                  <td class="p-3">{{ p.isActive ? 'Active' : 'Hidden' }}</td>
+                  <td class="p-3 text-right">
+                    <div class="flex justify-end gap-2 flex-wrap">
+                      <a [routerLink]="['/admin/products', p.id]" class="px-3 py-1.5 rounded border border-app-border text-app-ink hover:bg-app-field transition-colors">Edit</a>
+                      <button type="button" class="px-3 py-1.5 rounded border border-red-300 text-red-700 hover:bg-red-50 transition-colors" (click)="remove(p)">Delete</button>
+                    </div>
                   </td>
                 </tr>
               }
@@ -99,6 +102,7 @@ export class AdminProductsComponent {
   private readonly api = inject(AdminProductService);
   private readonly fb = inject(FormBuilder);
   private readonly toast = inject(ToastService);
+  private readonly confirmDelete = inject(ConfirmDeleteDialogService);
 
   readonly filterForm = this.fb.nonNullable.group({ search: '' });
   readonly reload$ = new BehaviorSubject<void>(undefined);
@@ -141,13 +145,21 @@ export class AdminProductsComponent {
   }
 
   remove(p: ProductListDto) {
-    if (!confirm(`Delete product "${p.name}"?`)) return;
-    this.api.delete(p.id).subscribe({
-      next: () => {
-        this.toast.success('Product deleted', { duration: 2500 });
-        this.reload$.next();
-      },
-      error: (e) => this.toast.error(e?.error?.message ?? 'Delete failed'),
-    });
+    this.confirmDelete
+      .confirm({
+        title: 'Delete product',
+        message: `Are you sure you want to delete “${p.name}”? This cannot be undone.`,
+      })
+      .pipe(
+        filter(Boolean),
+        switchMap(() => this.api.delete(p.id))
+      )
+      .subscribe({
+        next: () => {
+          this.toast.success('Product deleted', { duration: 2500 });
+          this.reload$.next();
+        },
+        error: (e) => this.toast.error(e?.error?.message ?? 'Delete failed'),
+      });
   }
 }

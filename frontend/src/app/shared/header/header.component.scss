@@ -15,16 +15,22 @@ html.dark :host {
   --nav-border: rgba(201, 169, 110, 0.1);
 }
 
-/* Host display flex for proper layout */
+/* Sticky bar (matches admin: stays visible while scrolling the store) */
 :host {
-  display: flex;
-  align-items: center;
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
   min-height: 64px;
   background: var(--nav-bg);
   color: var(--nav-text);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid var(--nav-border);
+}
 
+:host ::ng-deep .mat-mdc-toolbar {
+  background: transparent !important;
 }
 
 /* Navigation links */

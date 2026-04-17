@@ -6,10 +6,10 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <div class="max-w-2xl">
+    <div class="max-w-5xl">
       <h1 class="font-display text-3xl text-app-ink mb-2">Dashboard</h1>
       <p class="text-app-ink-muted mb-8">Manage catalog data. All changes are saved to the database via the API.</p>
-      <div class="grid sm:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <a
           routerLink="/admin/categories"
           class="block rounded-xl border border-app-border bg-app-card p-6 shadow-card hover:border-app-accent/50 transition-colors"

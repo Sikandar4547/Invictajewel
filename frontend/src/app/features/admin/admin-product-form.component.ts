@@ -93,8 +93,7 @@ const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
                 <input type="number" formControlName="stockQuantity" [class.is-invalid]="isFieldInvalid('stockQuantity')" min="0" />
                 @if (errorFor('stockQuantity'); as msg) { <small class="ij-error">{{ msg }}</small> }
               </div>
-              <div class="ij-field"><label>Status</label><select formControlName="isActive"><option [ngValue]="true">Active</option><option [ngValue]="false">Inactive</option></select></div>
-              <div class="ij-field"><label>Featured</label><select formControlName="isFeatured"><option [ngValue]="true">Yes</option><option [ngValue]="false">No</option></select></div>
+              <div class="ij-field"><label>Status</label><select formControlName="isActive"><option [ngValue]="true">Active</option><option [ngValue]="false">Hidden</option></select></div>
               <div class="ij-field"><label>New</label><select formControlName="isNew"><option [ngValue]="true">Yes</option><option [ngValue]="false">No</option></select></div>
               <div class="ij-field"><label>Upload Image</label><input type="file" accept="image/*" (change)="onFile($event)" /></div>
               <div class="ij-field ij-col-span-3"><label>Description</label><textarea rows="4" formControlName="description"></textarea></div>

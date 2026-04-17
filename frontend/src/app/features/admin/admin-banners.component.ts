@@ -1,8 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { filter, switchMap } from 'rxjs';
 import { AdminBannerService } from '../../core/services/admin-banner.service';
 import { ToastService } from '../../core/services/toast.service';
+import { ConfirmDeleteDialogService } from '../../shared/dialogs/confirm-delete-dialog.service';
 import { BannerDto } from '../../models/api.types';
 import { getImageUrl } from '../../core/utils/image-url.util';
 
@@ -58,6 +60,7 @@ import { getImageUrl } from '../../core/utils/image-url.util';
 export class AdminBannersComponent implements OnInit {
   private readonly api = inject(AdminBannerService);
   private readonly toast = inject(ToastService);
+  private readonly confirmDelete = inject(ConfirmDeleteDialogService);
   protected readonly getImageUrl = getImageUrl;
 
   items: BannerDto[] = [];
@@ -67,14 +70,22 @@ export class AdminBannersComponent implements OnInit {
   }
 
   remove(item: BannerDto): void {
-    if (!confirm(`Delete banner "${item.title}"?`)) return;
-    this.api.delete(item.id).subscribe({
-      next: () => {
-        this.toast.success('Banner deleted', { duration: 2000 });
-        this.load();
-      },
-      error: () => this.toast.error('Delete failed'),
-    });
+    this.confirmDelete
+      .confirm({
+        title: 'Delete banner',
+        message: `Are you sure you want to delete “${item.title}”? This cannot be undone.`,
+      })
+      .pipe(
+        filter(Boolean),
+        switchMap(() => this.api.delete(item.id))
+      )
+      .subscribe({
+        next: () => {
+          this.toast.success('Banner deleted', { duration: 2000 });
+          this.load();
+        },
+        error: () => this.toast.error('Delete failed'),
+      });
   }
 
   private load(): void {

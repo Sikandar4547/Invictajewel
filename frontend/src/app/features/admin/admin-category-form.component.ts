@@ -72,7 +72,7 @@ const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
                 <label for="isActive">Status</label>
                 <select id="isActive" formControlName="isActive">
                   <option [ngValue]="true">Active</option>
-                  <option [ngValue]="false">Inactive</option>
+                  <option [ngValue]="false">Hidden</option>
                 </select>
               </div>
               <div class="ij-field ij-col-span-3">

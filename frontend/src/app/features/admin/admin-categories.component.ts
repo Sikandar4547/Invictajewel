@@ -3,9 +3,10 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { catchError, map, of } from 'rxjs';
+import { catchError, filter, map, of, switchMap } from 'rxjs';
 import { AdminCategoryService } from '../../core/services/admin-category.service';
 import { ToastService } from '../../core/services/toast.service';
+import { ConfirmDeleteDialogService } from '../../shared/dialogs/confirm-delete-dialog.service';
 import { CategoryDto } from '../../models/api.types';
 
 interface FlatRow {
@@ -51,7 +52,7 @@ function flattenTree(cats: CategoryDto[], depth = 0): FlatRow[] {
               <tr>
                 <th class="p-4 font-medium">Name</th>
                 <th class="p-4 font-medium">Slug</th>
-                <th class="p-4 font-medium">Active</th>
+                <th class="p-4 font-medium">Status</th>
                 <th class="p-4 font-medium text-right">Actions</th>
               </tr>
             </thead>
@@ -63,10 +64,12 @@ function flattenTree(cats: CategoryDto[], depth = 0): FlatRow[] {
                     {{ row.name }}
                   </td>
                   <td class="p-4 text-app-ink-muted font-mono text-xs">{{ row.slug }}</td>
-                  <td class="p-4">{{ row.isActive ? 'Yes' : 'No' }}</td>
-                  <td class="p-4 text-right space-x-2">
-                    <a mat-button [routerLink]="['/admin/categories', row.id]" color="primary">Edit</a>
-                    <button mat-button color="warn" type="button" (click)="remove(row.id, row.name)">Delete</button>
+                  <td class="p-4">{{ row.isActive ? 'Active' : 'Hidden' }}</td>
+                  <td class="p-4 text-right">
+                    <div class="flex justify-end gap-2 flex-wrap">
+                      <a [routerLink]="['/admin/categories', row.id]" class="px-3 py-1.5 rounded border border-app-border text-app-ink hover:bg-app-field transition-colors">Edit</a>
+                      <button type="button" class="px-3 py-1.5 rounded border border-red-300 text-red-700 hover:bg-red-50 transition-colors" (click)="remove(row.id, row.name)">Delete</button>
+                    </div>
                   </td>
                 </tr>
               }
@@ -80,6 +83,7 @@ function flattenTree(cats: CategoryDto[], depth = 0): FlatRow[] {
 export class AdminCategoriesComponent {
   private readonly api = inject(AdminCategoryService);
   private readonly toast = inject(ToastService);
+  private readonly confirmDelete = inject(ConfirmDeleteDialogService);
 
   readonly vm$ = this.api.tree().pipe(
     map((tree) => ({ loading: false as const, error: undefined as string | undefined, rows: flattenTree(tree) })),
@@ -97,13 +101,21 @@ export class AdminCategoriesComponent {
   }
 
   remove(id: number, name: string) {
-    if (!confirm(`Delete category "${name}"?`)) return;
-    this.api.delete(id).subscribe({
-      next: () => {
-        this.toast.success('Category deleted', { duration: 2500 });
-        window.location.reload();
-      },
-      error: (e) => this.toast.error(e?.error?.message ?? 'Delete failed'),
-    });
+    this.confirmDelete
+      .confirm({
+        title: 'Delete category',
+        message: `Are you sure you want to delete “${name}”? This cannot be undone.`,
+      })
+      .pipe(
+        filter(Boolean),
+        switchMap(() => this.api.delete(id))
+      )
+      .subscribe({
+        next: () => {
+          this.toast.success('Category deleted', { duration: 2500 });
+          window.location.reload();
+        },
+        error: (e) => this.toast.error(e?.error?.message ?? 'Delete failed'),
+      });
   }
 }

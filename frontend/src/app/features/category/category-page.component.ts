@@ -1,6 +1,6 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,6 +36,7 @@ type CategoryPageState =
 })
 export class CategoryPageComponent {
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly api = inject(CategoryService);
 
   readonly page$ = new BehaviorSubject(1);
@@ -66,14 +67,18 @@ export class CategoryPageComponent {
           }),
           tree: this.api.activeTree().pipe(take(1)),
         }).pipe(
-          map(({ category, products, tree }) => {
+          switchMap(({ category, products, tree }) => {
+            if (!category.isActive) {
+              void this.router.navigateByUrl('/');
+              return of<CategoryPageState>({ kind: 'loading' });
+            }
             const breadcrumb = findCategoryPath(tree, slug) ?? [category];
-            return {
+            return of<CategoryPageState>({
               kind: 'ready' as const,
               category,
               products,
               breadcrumb,
-            };
+            });
           }),
           catchError(() => of<CategoryPageState>({ kind: 'error' }))
         )
