@@ -172,6 +172,7 @@ export interface OrderDetailDto {
 
 export interface OrderItemDto {
   productName: string;
+  productImageUrl?: string | null;
   unitPrice: number;
   quantity: number;
   totalPrice: number;

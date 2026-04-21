@@ -152,7 +152,7 @@ export class FooterComponent {
    */
   openEmail(): void {
     const mailtoUrl = `mailto:${this.email}?subject=Inquiry from Invicta Jewel&body=Hello,\n\nI would like to inquire about your products.\n\nThank you!`;
-    window.location.href = mailtoUrl;
+    window.open(mailtoUrl, '_blank');
   }
 
   /**

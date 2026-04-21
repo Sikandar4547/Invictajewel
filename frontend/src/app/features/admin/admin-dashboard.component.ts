@@ -31,6 +31,13 @@ import { RouterLink } from '@angular/router';
           <span class="font-display text-lg text-app-ink">Banners</span>
           <p class="text-sm text-app-ink-muted mt-2">Homepage slides, links, order</p>
         </a>
+        <a
+          routerLink="/admin/orders"
+          class="block rounded-xl border border-app-border bg-app-card p-6 shadow-card hover:border-app-accent/50 transition-colors"
+        >
+          <span class="font-display text-lg text-app-ink">Orders</span>
+          <p class="text-sm text-app-ink-muted mt-2">Incomplete orders, mark complete</p>
+        </a>
       </div>
     </div>
   `,

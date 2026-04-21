@@ -23,6 +23,7 @@ export const routes: Routes = [
       { path: 'products', loadComponent: () => import('./features/admin/admin-products.component').then((m) => m.AdminProductsComponent) },
       { path: 'products/new', loadComponent: () => import('./features/admin/admin-product-form.component').then((m) => m.AdminProductFormComponent) },
       { path: 'products/:id', loadComponent: () => import('./features/admin/admin-product-form.component').then((m) => m.AdminProductFormComponent) },
+      { path: 'orders', loadComponent: () => import('./features/admin/admin-orders.component').then((m) => m.AdminOrdersComponent) },
       { path: 'banners', loadComponent: () => import('./features/admin/admin-banners.component').then((m) => m.AdminBannersComponent) },
       { path: 'banners/new', loadComponent: () => import('./features/admin/admin-banner-form.component').then((m) => m.AdminBannerFormComponent) },
       { path: 'banners/:id', loadComponent: () => import('./features/admin/admin-banner-form.component').then((m) => m.AdminBannerFormComponent) },

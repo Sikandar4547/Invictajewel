@@ -51,6 +51,11 @@ public class OrderService(
             {
                 ProductId = product.Id,
                 ProductName = product.Name,
+                ProductImageUrl = product.Images
+                    .OrderByDescending(i => i.IsPrimary)
+                    .ThenBy(i => i.DisplayOrder)
+                    .Select(i => i.ImageUrl)
+                    .FirstOrDefault(),
                 UnitPrice = unit,
                 Quantity = line.Quantity,
                 TotalPrice = lineTotal
@@ -82,9 +87,9 @@ public class OrderService(
         return entity is null ? null : mapper.Map<OrderDetailDto>(entity);
     }
 
-    public async Task<PagedResultDto<OrderDetailDto>> GetAllAsync(int page, int pageSize, CancellationToken cancellationToken = default)
+    public async Task<PagedResultDto<OrderDetailDto>> GetAllAsync(int page, int pageSize, bool incompleteOnly = false, CancellationToken cancellationToken = default)
     {
-        var (items, total) = await orders.GetAllPagedAsync(page, pageSize, cancellationToken);
+        var (items, total) = await orders.GetAllPagedAsync(page, pageSize, incompleteOnly, cancellationToken);
         return new PagedResultDto<OrderDetailDto>
         {
             Items = mapper.Map<IReadOnlyList<OrderDetailDto>>(items),
@@ -93,6 +98,9 @@ public class OrderService(
             PageSize = pageSize
         };
     }
+
+    public Task<int> GetIncompleteCountAsync(CancellationToken cancellationToken = default) =>
+        orders.GetIncompleteCountAsync(cancellationToken);
 
     public async Task<bool> UpdateStatusAsync(int orderId, string status, CancellationToken cancellationToken = default)
     {

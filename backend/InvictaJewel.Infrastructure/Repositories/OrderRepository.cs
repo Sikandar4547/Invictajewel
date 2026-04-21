@@ -1,4 +1,5 @@
 using InvictaJewel.Application.Abstractions.Repositories;
+using InvictaJewel.Domain.Common;
 using InvictaJewel.Domain.Entities;
 using InvictaJewel.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +20,15 @@ public class OrderRepository(ApplicationDbContext db) : IOrderRepository
             .Include(o => o.Items)
             .FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
 
-    public async Task<(IReadOnlyList<Order> Items, int Total)> GetAllPagedAsync(int page, int pageSize, CancellationToken cancellationToken = default)
+    public async Task<(IReadOnlyList<Order> Items, int Total)> GetAllPagedAsync(int page, int pageSize, bool incompleteOnly = false, CancellationToken cancellationToken = default)
     {
-        var query = db.Orders.AsNoTracking().OrderByDescending(o => o.CreatedAt);
+        var query = db.Orders.AsNoTracking();
+        if (incompleteOnly)
+        {
+            query = query.Where(o => o.OrderStatus != OrderStatuses.Delivered && o.OrderStatus != OrderStatuses.Cancelled);
+        }
+        query = query.OrderByDescending(o => o.CreatedAt);
+
         var total = await query.CountAsync(cancellationToken);
         var size = Math.Clamp(pageSize, 1, 100);
         var p = Math.Max(page, 1);
@@ -32,6 +39,10 @@ public class OrderRepository(ApplicationDbContext db) : IOrderRepository
             .ToListAsync(cancellationToken);
         return (items, total);
     }
+
+    public Task<int> GetIncompleteCountAsync(CancellationToken cancellationToken = default) =>
+        db.Orders.AsNoTracking()
+            .CountAsync(o => o.OrderStatus != OrderStatuses.Delivered && o.OrderStatus != OrderStatuses.Cancelled, cancellationToken);
 
     public Task AddAsync(Order order, CancellationToken cancellationToken = default) =>
         db.Orders.AddAsync(order, cancellationToken).AsTask();

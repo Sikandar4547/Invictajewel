@@ -28,47 +28,51 @@ import { getOrCreateCartId, resetCartId } from '../../core/services/cart-id.stor
         @if (!confirmation) {
           <mat-stepper linear #stepper>
             <mat-step [stepControl]="infoForm" label="Your details">
-              <form [formGroup]="infoForm" class="ij-checkout-form">
-                <div class="ij-field">
-                  <label>Full name</label>
-                  <input type="text" formControlName="customerName" [class.is-invalid]="isFieldInvalid('customerName')" />
-                  @if (errorFor('customerName'); as msg) { <small class="ij-error">{{ msg }}</small> }
-                </div>
-                <div class="ij-field">
-                  <label>Email</label>
-                  <input type="email" formControlName="customerEmail" [class.is-invalid]="isFieldInvalid('customerEmail')" />
-                  @if (errorFor('customerEmail'); as msg) { <small class="ij-error">{{ msg }}</small> }
-                </div>
-                <div class="ij-field">
-                  <label>Phone</label>
-                  <input type="text" formControlName="customerPhone" [class.is-invalid]="isFieldInvalid('customerPhone')" />
-                  @if (errorFor('customerPhone'); as msg) { <small class="ij-error">{{ msg }}</small> }
-                </div>
-                <div class="ij-field">
-                  <label>Shipping address</label>
-                  <textarea rows="3" formControlName="shippingAddress" [class.is-invalid]="isFieldInvalid('shippingAddress')"></textarea>
-                  @if (errorFor('shippingAddress'); as msg) { <small class="ij-error">{{ msg }}</small> }
-                </div>
-                <div class="ij-field">
-                  <label>City</label>
-                  <input type="text" formControlName="city" [class.is-invalid]="isFieldInvalid('city')" />
-                  @if (errorFor('city'); as msg) { <small class="ij-error">{{ msg }}</small> }
-                </div>
-                <div class="ij-field">
-                  <label>Postal code</label>
-                  <input type="text" formControlName="postalCode" [class.is-invalid]="isFieldInvalid('postalCode')" />
-                  @if (errorFor('postalCode'); as msg) { <small class="ij-error">{{ msg }}</small> }
-                </div>
-                <div class="ij-field">
-                  <label>Notes</label>
-                  <textarea rows="2" formControlName="notes"></textarea>
-                </div>
-                <div class="flex justify-end">
-                  <button type="button" (click)="stepper.next()" [disabled]="infoForm.invalid" class="ij-button">
-                    Continue
-                  </button>
-                </div>
-              </form>
+              <div class="ij-admin-card">
+                <form [formGroup]="infoForm" class="ij-checkout-form" novalidate>
+                  <div class="ij-form-grid">
+                    <div class="ij-field">
+                      <label>Full name</label>
+                      <input type="text" formControlName="customerName" [class.is-invalid]="isFieldInvalid('customerName')" required />
+                      @if (errorFor('customerName'); as msg) { <small class="ij-error">{{ msg }}</small> }
+                    </div>
+                    <div class="ij-field">
+                      <label>Email</label>
+                      <input type="email" formControlName="customerEmail" [class.is-invalid]="isFieldInvalid('customerEmail')" required />
+                      @if (errorFor('customerEmail'); as msg) { <small class="ij-error">{{ msg }}</small> }
+                    </div>
+                    <div class="ij-field">
+                      <label>Phone</label>
+                      <input type="text" formControlName="customerPhone" [class.is-invalid]="isFieldInvalid('customerPhone')" required />
+                      @if (errorFor('customerPhone'); as msg) { <small class="ij-error">{{ msg }}</small> }
+                    </div>
+                    <div class="ij-field ij-col-span-3">
+                      <label>Shipping address</label>
+                      <textarea rows="3" formControlName="shippingAddress" [class.is-invalid]="isFieldInvalid('shippingAddress')" required></textarea>
+                      @if (errorFor('shippingAddress'); as msg) { <small class="ij-error">{{ msg }}</small> }
+                    </div>
+                    <div class="ij-field">
+                      <label>City</label>
+                      <input type="text" formControlName="city" [class.is-invalid]="isFieldInvalid('city')" required />
+                      @if (errorFor('city'); as msg) { <small class="ij-error">{{ msg }}</small> }
+                    </div>
+                    <div class="ij-field">
+                      <label>Postal code</label>
+                      <input type="text" formControlName="postalCode" [class.is-invalid]="isFieldInvalid('postalCode')" />
+                      @if (errorFor('postalCode'); as msg) { <small class="ij-error">{{ msg }}</small> }
+                    </div>
+                    <div class="ij-field ij-col-span-3">
+                      <label>Notes</label>
+                      <textarea rows="2" formControlName="notes"></textarea>
+                    </div>
+                  </div>
+                  <div class="ij-actions">
+                    <button type="button" (click)="stepper.next()" [disabled]="infoForm.invalid" class="ij-button">
+                      Continue
+                    </button>
+                  </div>
+                </form>
+              </div>
             </mat-step>
           <mat-step label="Review &amp; confirm">
             @if (cart$ | async; as cart) {
@@ -109,18 +113,27 @@ import { getOrCreateCartId, resetCartId } from '../../core/services/cart-id.stor
     </div>
   `,
   styles: [`
-    .ij-checkout-form { display: flex; flex-direction: column; gap: 16px; }
+    .ij-admin-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; }
+    .ij-checkout-form { }
+    .ij-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .ij-col-span-2 { grid-column: span 2; }
+    .ij-col-span-3 { grid-column: span 3; }
     .ij-field { display: flex; flex-direction: column; gap: 6px; }
     .ij-field label { font-size: 0.92rem; color: #374151; font-weight: 600; }
-    .ij-field input, .ij-field textarea { border: 1px solid #d1d5db; border-radius: 8px; background: #fff; color: #111827; padding: 10px 12px; width: 100%; font-family: inherit; }
+    .ij-field label::after { content: ''; color: #dc2626; font-weight: 700; }
+    .ij-field label:has(+ input[required])::after { content: ' *'; color: #dc2626; }
+    .ij-field label:has(+ select[required])::after { content: ' *'; color: #dc2626; }
+    .ij-field label:has(+ textarea[required])::after { content: ' *'; color: #dc2626; }
+    .ij-field input, .ij-field select, .ij-field textarea { border: 1px solid #d1d5db; border-radius: 8px; background: #fff; color: #111827; padding: 10px 12px; width: 100%; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
     .ij-field .is-invalid { border-color: #dc2626; }
     .ij-error { color: #b91c1c; font-size: 0.8rem; }
-    .ij-field input:focus, .ij-field textarea:focus { outline: none; border-color: #a8864c; box-shadow: 0 0 0 3px rgba(168,134,76,0.15); }
-    .ij-button { background-color: #a8864c; color: white; border: none; border-radius: 8px; padding: 10px 16px; font-weight: 600; cursor: pointer; }
+    .ij-field input:focus, .ij-field select:focus, .ij-field textarea:focus { outline: none; border-color: #a8864c; box-shadow: 0 0 0 3px rgba(168,134,76,0.15); }
+    .ij-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end; }
+    .ij-button { border: 0; background: #a8864c; color: #fff; padding: 12px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background-color 0.2s; }
     .ij-button:disabled { opacity: 0.6; cursor: not-allowed; }
     .ij-button:hover:not(:disabled) { background-color: #8f7039; }
-    .ij-button-secondary { background-color: transparent; color: #a8864c; border: 1px solid #a8864c; border-radius: 8px; padding: 10px 16px; font-weight: 600; cursor: pointer; }
-    .ij-button-secondary:hover { background-color: rgba(168,134,76,0.1); }
+    @media (max-width: 992px) { .ij-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ij-col-span-3 { grid-column: span 2; } }
+    @media (max-width: 640px) { .ij-form-grid { grid-template-columns: 1fr; } .ij-col-span-2, .ij-col-span-3 { grid-column: span 1; } }
   `],
 })
 export class CheckoutPageComponent {

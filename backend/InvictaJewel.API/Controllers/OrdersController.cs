@@ -39,8 +39,17 @@ public class OrdersController(IOrderService orders) : ControllerBase
 
     [HttpGet]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<PagedResultDto<OrderDetailDto>>> List([FromQuery] int page = 1, [FromQuery] int pageSize = 20, CancellationToken ct = default) =>
-        Ok(await orders.GetAllAsync(page, pageSize, ct));
+    public async Task<ActionResult<PagedResultDto<OrderDetailDto>>> List(
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 20,
+        [FromQuery] bool incompleteOnly = false,
+        CancellationToken ct = default) =>
+        Ok(await orders.GetAllAsync(page, pageSize, incompleteOnly, ct));
+
+    [HttpGet("incomplete-count")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<object>> GetIncompleteCount(CancellationToken ct) =>
+        Ok(new { count = await orders.GetIncompleteCountAsync(ct) });
 
     [HttpPut("{orderId:int}/status")]
     [Authorize(Roles = "Admin")]
