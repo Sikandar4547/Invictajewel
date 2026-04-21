@@ -7,6 +7,10 @@ export interface CategoryDto {
   isActive: boolean;
   displayOrder: number;
   parentCategoryId?: number | null;
+  /** Percentage off regular price for products in this category (and ancestors when pricing). */
+  saleDiscountPercent?: number | null;
+  saleStartUtc?: string | null;
+  saleEndUtc?: string | null;
   children: CategoryDto[];
   productCount?: number | null;
   products?: ProductListDto[] | null;
@@ -45,6 +49,8 @@ export interface ProductListDto {
   sku: string;
   regularPrice: number;
   salePrice?: number | null;
+  saleStartUtc?: string | null;
+  saleEndUtc?: string | null;
   isFeatured: boolean;
   isNew: boolean;
   primaryImageUrl?: string | null;
@@ -82,6 +88,9 @@ export interface SaveCategoryRequest {
   displayOrder: number;
   imageUrl?: string | null;
   metadata?: string | null;
+  saleDiscountPercent?: number | null;
+  saleStartUtc?: string | null;
+  saleEndUtc?: string | null;
 }
 
 /** Admin create/update product (matches API body). */
@@ -103,6 +112,8 @@ export interface SaveProductRequest {
   primaryCategoryId?: number | null;
   /** Omit on update to leave images unchanged; empty string clears. */
   imageUrl?: string | null;
+  saleStartUtc?: string | null;
+  saleEndUtc?: string | null;
 }
 
 export interface PagedResultDto<T> {

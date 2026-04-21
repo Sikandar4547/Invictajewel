@@ -13,6 +13,10 @@ public class CategoryDto
     public bool IsActive { get; set; }
     public int DisplayOrder { get; set; }
     public int? ParentCategoryId { get; set; }
+    /// <summary>Percentage off regular price for products in this category (and ancestors when resolving pricing).</summary>
+    public decimal? SaleDiscountPercent { get; set; }
+    public DateTime? SaleStartUtc { get; set; }
+    public DateTime? SaleEndUtc { get; set; }
     public List<CategoryDto> Children { get; set; } = new();
     public int? ProductCount { get; set; }
     public List<ProductListDto>? Products { get; set; }
@@ -39,10 +43,18 @@ public class CreateCategoryDto : IValidatableObject
     public string? ImageUrl { get; set; }
     public string? Metadata { get; set; }
 
+    [Range(typeof(decimal), "0", "100")]
+    public decimal? SaleDiscountPercent { get; set; }
+
+    public DateTime? SaleStartUtc { get; set; }
+    public DateTime? SaleEndUtc { get; set; }
+
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (ParentCategoryId is { } pid && pid <= 0)
             yield return new ValidationResult("Parent category is invalid.", new[] { nameof(ParentCategoryId) });
+        if (SaleStartUtc.HasValue && SaleEndUtc.HasValue && SaleEndUtc.Value < SaleStartUtc.Value)
+            yield return new ValidationResult("Sale end must be on or after sale start.", new[] { nameof(SaleEndUtc), nameof(SaleStartUtc) });
     }
 }
 
@@ -50,8 +62,3 @@ public class UpdateCategoryDto : CreateCategoryDto
 {
 }
 
-public class ApplyCategorySaleDto
-{
-    [Range(typeof(decimal), "0", "999999999999")]
-    public decimal SalePrice { get; set; }
-}

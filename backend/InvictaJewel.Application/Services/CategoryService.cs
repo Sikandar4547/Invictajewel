@@ -1,6 +1,7 @@
 using AutoMapper;
 using InvictaJewel.Application.Abstractions.Repositories;
 using InvictaJewel.Application.DTOs;
+using InvictaJewel.Application.Pricing;
 using InvictaJewel.Domain.Entities;
 
 namespace InvictaJewel.Application.Services;
@@ -34,7 +35,17 @@ public class CategoryService(
         {
             var scope = (await GetCategoryScopeIdsAsync(id, cancellationToken)).ToList();
             var (items, _) = await products.SearchAsync(null, 1, 50, null, null, null, null, null, admin, scope, cancellationToken);
-            dto.Products = mapper.Map<List<ProductListDto>>(items);
+            var list = mapper.Map<List<ProductListDto>>(items);
+            if (!admin && list.Count > 0)
+            {
+                var flat = await categories.GetAllNonDeletedFlatAsync(cancellationToken);
+                var dict = flat.ToDictionary(c => c.Id);
+                var now = DateTime.UtcNow;
+                for (var i = 0; i < items.Count; i++)
+                    SalePricing.ApplyEffectiveToProductListDto(items[i], list[i], dict, now);
+            }
+
+            dto.Products = list;
         }
         return dto;
     }
@@ -59,9 +70,20 @@ public class CategoryService(
     {
         var scope = (await GetCategoryScopeIdsAsync(categoryId, cancellationToken)).ToList();
         var (items, total) = await products.SearchAsync(null, page, pageSize, sortBy, sortOrder, minPrice, maxPrice, isOnSale, includeInactive, scope, cancellationToken);
+        var itemList = items.ToList();
+        var dtoList = mapper.Map<List<ProductListDto>>(itemList);
+        if (!includeInactive && dtoList.Count > 0)
+        {
+            var flat = await categories.GetAllNonDeletedFlatAsync(cancellationToken);
+            var dict = flat.ToDictionary(c => c.Id);
+            var now = DateTime.UtcNow;
+            for (var i = 0; i < itemList.Count; i++)
+                SalePricing.ApplyEffectiveToProductListDto(itemList[i], dtoList[i], dict, now);
+        }
+
         return new PagedResultDto<ProductListDto>
         {
-            Items = mapper.Map<IReadOnlyList<ProductListDto>>(items),
+            Items = dtoList,
             TotalCount = total,
             Page = page,
             PageSize = pageSize
@@ -79,7 +101,10 @@ public class CategoryService(
             IsActive = dto.IsActive,
             DisplayOrder = dto.DisplayOrder,
             ImageUrl = dto.ImageUrl,
-            Metadata = dto.Metadata
+            Metadata = dto.Metadata,
+            SaleDiscountPercent = dto.SaleDiscountPercent is > 0 ? dto.SaleDiscountPercent : null,
+            SaleStartUtc = dto.SaleStartUtc,
+            SaleEndUtc = dto.SaleEndUtc
         };
         await categories.AddAsync(entity, cancellationToken);
         await categories.SaveChangesAsync(cancellationToken);
@@ -107,6 +132,9 @@ public class CategoryService(
         entity.DisplayOrder = dto.DisplayOrder;
         entity.ImageUrl = dto.ImageUrl;
         entity.Metadata = dto.Metadata;
+        entity.SaleDiscountPercent = dto.SaleDiscountPercent is > 0 ? dto.SaleDiscountPercent : null;
+        entity.SaleStartUtc = dto.SaleStartUtc;
+        entity.SaleEndUtc = dto.SaleEndUtc;
         entity.UpdatedAt = DateTime.UtcNow;
         categories.Update(entity);
         await categories.SaveChangesAsync(cancellationToken);
@@ -137,22 +165,6 @@ public class CategoryService(
         categories.Update(entity);
         await categories.SaveChangesAsync(cancellationToken);
         return true;
-    }
-
-    public async Task ApplySaleAsync(int categoryId, decimal salePrice, CancellationToken cancellationToken = default)
-    {
-        var scope = (await GetCategoryScopeIdsAsync(categoryId, cancellationToken)).ToList();
-        if (scope.Count == 0)
-            return;
-        await products.ApplySaleToProductsInCategoriesAsync(scope, salePrice, cancellationToken);
-    }
-
-    public async Task RemoveSaleAsync(int categoryId, CancellationToken cancellationToken = default)
-    {
-        var scope = (await GetCategoryScopeIdsAsync(categoryId, cancellationToken)).ToList();
-        if (scope.Count == 0)
-            return;
-        await products.RemoveSaleFromProductsInCategoriesAsync(scope, cancellationToken);
     }
 
     private async Task<IReadOnlyList<int>> GetCategoryScopeIdsAsync(int categoryId, CancellationToken cancellationToken)

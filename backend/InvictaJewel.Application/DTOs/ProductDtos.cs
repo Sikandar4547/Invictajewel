@@ -21,6 +21,8 @@ public class ProductListDto
     public string SKU { get; set; } = string.Empty;
     public decimal RegularPrice { get; set; }
     public decimal? SalePrice { get; set; }
+    public DateTime? SaleStartUtc { get; set; }
+    public DateTime? SaleEndUtc { get; set; }
     public bool IsFeatured { get; set; }
     public bool IsNew { get; set; }
     public string? PrimaryImageUrl { get; set; }
@@ -74,6 +76,8 @@ public class CreateProductDto : IValidatableObject
     public decimal RegularPrice { get; set; }
 
     public decimal? SalePrice { get; set; }
+    public DateTime? SaleStartUtc { get; set; }
+    public DateTime? SaleEndUtc { get; set; }
 
     [Required(ErrorMessage = "SKU is required.")]
     [MaxLength(100)]
@@ -109,6 +113,8 @@ public class CreateProductDto : IValidatableObject
             yield return new ValidationResult("Sale price must be a non-negative number.", new[] { nameof(SalePrice) });
         if (SalePrice.HasValue && SalePrice.Value > RegularPrice)
             yield return new ValidationResult("Sale price must be less than or equal to regular price.", new[] { nameof(SalePrice) });
+        if (SaleStartUtc.HasValue && SaleEndUtc.HasValue && SaleEndUtc.Value < SaleStartUtc.Value)
+            yield return new ValidationResult("Sale end must be on or after sale start.", new[] { nameof(SaleEndUtc), nameof(SaleStartUtc) });
     }
 }
 
@@ -120,6 +126,9 @@ public class SetSaleDto
 {
     [Range(typeof(decimal), "0", "999999999999")]
     public decimal SalePrice { get; set; }
+
+    public DateTime? SaleStartUtc { get; set; }
+    public DateTime? SaleEndUtc { get; set; }
 }
 
 public class UploadProductImageResultDto

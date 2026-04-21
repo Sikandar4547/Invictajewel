@@ -8,6 +8,10 @@ public class Product : ISoftDeletable
     public string? Description { get; set; }
     public decimal RegularPrice { get; set; }
     public decimal? SalePrice { get; set; }
+    /// <summary>UTC instant when product sale price becomes active (null = no start restriction).</summary>
+    public DateTime? SaleStartUtc { get; set; }
+    /// <summary>UTC instant when product sale price ends (null = no end). Sale is inactive strictly after this instant.</summary>
+    public DateTime? SaleEndUtc { get; set; }
     public string SKU { get; set; } = string.Empty;
     public int StockQuantity { get; set; }
     public bool IsActive { get; set; } = true;

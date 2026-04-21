@@ -53,7 +53,7 @@ public class AdminProductsController(IProductService products) : ControllerBase
 
     [HttpPatch("{id:int}/sale")]
     public async Task<IActionResult> SetSale(int id, [FromBody] SetSaleDto dto, CancellationToken ct) =>
-        await products.SetSaleAsync(id, dto.SalePrice, ct) ? NoContent() : NotFound();
+        await products.SetSaleAsync(id, dto, ct) ? NoContent() : NotFound();
 
     [HttpDelete("{id:int}/sale")]
     public async Task<IActionResult> RemoveSale(int id, CancellationToken ct) =>

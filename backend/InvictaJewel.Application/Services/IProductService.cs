@@ -13,7 +13,7 @@ public interface IProductService
     Task<ProductDetailDto?> UpdateAsync(int id, UpdateProductDto dto, CancellationToken cancellationToken = default);
     Task<bool> SoftDeleteAsync(int id, CancellationToken cancellationToken = default);
     Task<bool> ToggleStatusAsync(int id, CancellationToken cancellationToken = default);
-    Task<bool> SetSaleAsync(int id, decimal salePrice, CancellationToken cancellationToken = default);
+    Task<bool> SetSaleAsync(int id, SetSaleDto dto, CancellationToken cancellationToken = default);
     Task<bool> RemoveSaleAsync(int id, CancellationToken cancellationToken = default);
     Task<UploadProductImageResultDto> SaveUploadedImageAsync(int productId, Stream fileStream, string fileName, CancellationToken cancellationToken = default);
 }

@@ -370,3 +370,21 @@ html[data-theme='dark'] {
 .category-filter-menu .mat-divider {
   margin: 0 !important;
 }
+
+/* Square-corner buttons across the app (Material defaults are very round on icon buttons / FABs). */
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mat-mdc-button-base.mat-mdc-button,
+.mat-mdc-button-base.mat-mdc-stroked-button {
+  border-radius: 6px !important;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  border-radius: 6px !important;
+}
+
+.mat-mdc-mini-fab.mat-mdc-button-base,
+.mat-mdc-fab.mat-mdc-button-base {
+  border-radius: 6px !important;
+}

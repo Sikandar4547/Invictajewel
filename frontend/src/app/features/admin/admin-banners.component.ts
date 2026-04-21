@@ -16,7 +16,7 @@ import { getImageUrl } from '../../core/utils/image-url.util';
     <div class="space-y-6">
       <div class="flex items-center justify-between gap-3">
         <h1 class="text-2xl font-semibold text-app-ink">Banners</h1>
-        <a routerLink="/admin/banners/new" class="px-4 py-2 rounded-lg bg-app-accent text-white">New Banner</a>
+        <a routerLink="/admin/banners/new" class="px-4 py-2 rounded-md bg-app-accent text-white">New Banner</a>
       </div>
 
       <div class="rounded-xl border border-app-border bg-app-card overflow-hidden">

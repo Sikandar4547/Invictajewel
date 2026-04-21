@@ -13,6 +13,9 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.Property(c => c.Slug).HasMaxLength(200).IsRequired();
         builder.Property(c => c.ImageUrl).HasMaxLength(500);
         builder.Property(c => c.Metadata).HasColumnType("nvarchar(max)");
+        builder.Property(c => c.SaleDiscountPercent).HasPrecision(9, 4);
+        builder.Property(c => c.SaleStartUtc);
+        builder.Property(c => c.SaleEndUtc);
 
         builder.HasIndex(c => c.Slug)
             .IsUnique()

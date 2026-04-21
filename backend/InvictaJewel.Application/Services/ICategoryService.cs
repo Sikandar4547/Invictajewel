@@ -13,6 +13,4 @@ public interface ICategoryService
     Task<CategoryDto?> UpdateAsync(int id, UpdateCategoryDto dto, CancellationToken cancellationToken = default);
     Task<bool> SoftDeleteAsync(int id, CancellationToken cancellationToken = default);
     Task<bool> ToggleStatusAsync(int id, CancellationToken cancellationToken = default);
-    Task ApplySaleAsync(int categoryId, decimal salePrice, CancellationToken cancellationToken = default);
-    Task RemoveSaleAsync(int categoryId, CancellationToken cancellationToken = default);
 }

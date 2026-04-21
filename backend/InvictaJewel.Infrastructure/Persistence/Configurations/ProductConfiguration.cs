@@ -14,6 +14,8 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(p => p.SKU).HasMaxLength(100).IsRequired();
         builder.Property(p => p.RegularPrice).HasPrecision(18, 2);
         builder.Property(p => p.SalePrice).HasPrecision(18, 2);
+        builder.Property(p => p.SaleStartUtc);
+        builder.Property(p => p.SaleEndUtc);
         builder.Property(p => p.MetaTitle).HasMaxLength(200);
         builder.Property(p => p.MetaDescription).HasMaxLength(500);
 

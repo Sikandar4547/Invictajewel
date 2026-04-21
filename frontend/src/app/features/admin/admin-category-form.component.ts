@@ -1,12 +1,18 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { forkJoin, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { AdminCategoryService } from '../../core/services/admin-category.service';
 import { ToastService } from '../../core/services/toast.service';
 import { CategoryDto, SaveCategoryRequest } from '../../models/api.types';
+import { datetimeLocalValueToUtcIso, utcIsoToDatetimeLocalValue } from '../../core/utils/datetime-local.util';
 
 interface ParentOption {
   id: number;
@@ -26,6 +32,16 @@ function flattenForParents(cats: CategoryDto[], depth = 0, excludeId?: number): 
 
 const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
 
+function saleDateRange(group: AbstractControl): ValidationErrors | null {
+  const start = group.get('saleStartLocal')?.value;
+  const end = group.get('saleEndLocal')?.value;
+  if (!start || !end) return null;
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+  if (startDate >= endDate) return { saleEndBeforeStart: true };
+  return null;
+}
+
 @Component({
   selector: 'app-admin-category-form',
   standalone: true,
@@ -33,6 +49,11 @@ const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
   ],
   template: `
     <div class="ij-admin-form-wrap">
@@ -75,6 +96,19 @@ const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
                   <option [ngValue]="false">Hidden</option>
                 </select>
               </div>
+              <div class="ij-field">
+                <label for="saleDiscountPercent">Category sale (% off)</label>
+                <input id="saleDiscountPercent" type="number" formControlName="saleDiscountPercent" min="0" max="100" step="0.01" placeholder="e.g. 15" />
+              </div>
+              <div class="ij-field">
+                <label for="saleStartLocal">Sale starts</label>
+                <input id="saleStartLocal" type="datetime-local" formControlName="saleStartLocal" />
+              </div>
+              <div class="ij-field">
+                <label for="saleEndLocal">Sale ends</label>
+                <input id="saleEndLocal" type="datetime-local" formControlName="saleEndLocal" />
+                @if (getDateRangeError(); as msg) { <small class="ij-error">{{ msg }}</small> }
+              </div>
               <div class="ij-field ij-col-span-3">
                 <label for="description">Description</label>
                 <textarea id="description" rows="4" formControlName="description"></textarea>
@@ -109,8 +143,8 @@ const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
     .ij-error { color: #b91c1c; font-size: 0.8rem; }
     .ij-field input:focus, .ij-field select:focus, .ij-field textarea:focus { outline: none; border-color: #a8864c; box-shadow: 0 0 0 3px rgba(168,134,76,0.15); }
     .ij-actions { display: flex; gap: 10px; margin-top: 20px; }
-    .ij-actions button { border: 0; background: #a8864c; color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 600; }
-    .ij-actions a { border: 1px solid #d1d5db; color: #111827; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .ij-actions button { border: 0; background: #a8864c; color: #fff; padding: 10px 16px; border-radius: 6px; font-weight: 600; }
+    .ij-actions a { border: 1px solid #d1d5db; color: #111827; text-decoration: none; padding: 10px 16px; border-radius: 6px; }
     @media (max-width: 992px) { .ij-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ij-col-span-3 { grid-column: span 2; } }
     @media (max-width: 640px) { .ij-form-grid { grid-template-columns: 1fr; } .ij-col-span-3 { grid-column: span 1; } }
   `],
@@ -136,7 +170,10 @@ export class AdminCategoryFormComponent implements OnInit {
     description: [''],
     imageUrl: [''],
     isActive: [true],
-  });
+    saleDiscountPercent: [null as number | null],
+    saleStartLocal: [''],
+    saleEndLocal: [''],
+  }, { validators: saleDateRange });
 
   isFieldInvalid(fieldName: string): boolean {
     const field = this.form.get(fieldName);
@@ -151,6 +188,11 @@ export class AdminCategoryFormComponent implements OnInit {
     if (field.errors?.['pattern']) return 'Slug must use lowercase letters, numbers, and hyphens only.';
     if (field.errors?.['min']) return 'Display order must be zero or greater.';
     return 'Invalid value.';
+  }
+
+  getDateRangeError(): string | null {
+    if (!this.form.errors?.['saleEndBeforeStart'] || !(this.form.touched || this.form.dirty)) return null;
+    return 'Sale end must be on or after sale start.';
   }
 
   private prettyFieldName(fieldName: 'name' | 'slug' | 'displayOrder'): string {
@@ -198,6 +240,9 @@ export class AdminCategoryFormComponent implements OnInit {
           description: c.description ?? '',
           imageUrl: c.imageUrl ?? '',
           isActive: c.isActive,
+          saleDiscountPercent: c.saleDiscountPercent ?? null,
+          saleStartLocal: utcIsoToDatetimeLocalValue(c.saleStartUtc ?? undefined),
+          saleEndLocal: utcIsoToDatetimeLocalValue(c.saleEndUtc ?? undefined),
         });
         this.loading = false;
       });
@@ -210,6 +255,7 @@ export class AdminCategoryFormComponent implements OnInit {
     }
     this.saving = true;
     const v = this.form.getRawValue();
+    const pct = v.saleDiscountPercent != null && Number(v.saleDiscountPercent) > 0 ? Number(v.saleDiscountPercent) : null;
     const body: SaveCategoryRequest = {
       name: (v.name ?? '').trim(),
       slug: (v.slug ?? '').trim().toLowerCase(),
@@ -218,6 +264,9 @@ export class AdminCategoryFormComponent implements OnInit {
       displayOrder: Number(v.displayOrder) || 0,
       imageUrl: v.imageUrl?.trim() || null,
       isActive: v.isActive ?? true,
+      saleDiscountPercent: pct,
+      saleStartUtc: datetimeLocalValueToUtcIso(v.saleStartLocal),
+      saleEndUtc: datetimeLocalValueToUtcIso(v.saleEndLocal),
     };
 
     const req$ = this.isNew ? this.api.create(body) : this.api.update(this.categoryId!, body);

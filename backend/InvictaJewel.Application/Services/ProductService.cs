@@ -2,6 +2,7 @@ using AutoMapper;
 using InvictaJewel.Application.Abstractions.Repositories;
 using InvictaJewel.Application.Abstractions.Storage;
 using InvictaJewel.Application.DTOs;
+using InvictaJewel.Application.Pricing;
 using InvictaJewel.Domain.Entities;
 
 namespace InvictaJewel.Application.Services;
@@ -34,9 +35,14 @@ public class ProductService(
         }
 
         var (items, total) = await products.SearchAsync(search, page, pageSize, sortBy, sortOrder, minPrice, maxPrice, isOnSale, includeInactive, scope, cancellationToken);
+        var itemList = items.ToList();
+        var dtoList = mapper.Map<List<ProductListDto>>(itemList);
+        if (!includeInactive && dtoList.Count > 0)
+            await ApplyStorefrontPricingAsync(itemList, dtoList, cancellationToken);
+
         return new PagedResultDto<ProductListDto>
         {
-            Items = mapper.Map<IReadOnlyList<ProductListDto>>(items),
+            Items = dtoList,
             TotalCount = total,
             Page = page,
             PageSize = pageSize
@@ -46,25 +52,42 @@ public class ProductService(
     public async Task<ProductDetailDto?> GetByIdAsync(int id, bool admin = false, CancellationToken cancellationToken = default)
     {
         var entity = await products.GetByIdAsync(id, admin, cancellationToken);
-        return entity is null ? null : mapper.Map<ProductDetailDto>(entity);
+        if (entity is null)
+            return null;
+        var dto = mapper.Map<ProductDetailDto>(entity);
+        if (!admin)
+            await ApplyStorefrontPricingSingleAsync(entity, dto, cancellationToken);
+        return dto;
     }
 
     public async Task<ProductDetailDto?> GetBySlugAsync(string slug, CancellationToken cancellationToken = default)
     {
         var entity = await products.GetBySlugAsync(slug, includeDeleted: false, cancellationToken);
-        return entity is null ? null : mapper.Map<ProductDetailDto>(entity);
+        if (entity is null)
+            return null;
+        var dto = mapper.Map<ProductDetailDto>(entity);
+        await ApplyStorefrontPricingSingleAsync(entity, dto, cancellationToken);
+        return dto;
     }
 
     public async Task<IReadOnlyList<ProductListDto>> GetFeaturedAsync(int take, CancellationToken cancellationToken = default)
     {
         var list = await products.GetFeaturedAsync(take, cancellationToken);
-        return mapper.Map<IReadOnlyList<ProductListDto>>(list);
+        var itemList = list.ToList();
+        var dtoList = mapper.Map<List<ProductListDto>>(itemList);
+        if (dtoList.Count > 0)
+            await ApplyStorefrontPricingAsync(itemList, dtoList, cancellationToken);
+        return dtoList;
     }
 
     public async Task<IReadOnlyList<ProductListDto>> GetNewArrivalsAsync(int take, CancellationToken cancellationToken = default)
     {
         var list = await products.GetNewArrivalsAsync(take, cancellationToken);
-        return mapper.Map<IReadOnlyList<ProductListDto>>(list);
+        var itemList = list.ToList();
+        var dtoList = mapper.Map<List<ProductListDto>>(itemList);
+        if (dtoList.Count > 0)
+            await ApplyStorefrontPricingAsync(itemList, dtoList, cancellationToken);
+        return dtoList;
     }
 
     public async Task<ProductDetailDto> CreateAsync(CreateProductDto dto, CancellationToken cancellationToken = default)
@@ -76,6 +99,8 @@ public class ProductService(
             Description = dto.Description,
             RegularPrice = dto.RegularPrice,
             SalePrice = dto.SalePrice,
+            SaleStartUtc = dto.SaleStartUtc,
+            SaleEndUtc = dto.SaleEndUtc,
             SKU = dto.SKU.Trim(),
             StockQuantity = dto.StockQuantity,
             IsActive = dto.IsActive,
@@ -111,6 +136,8 @@ public class ProductService(
         entity.Description = dto.Description;
         entity.RegularPrice = dto.RegularPrice;
         entity.SalePrice = dto.SalePrice;
+        entity.SaleStartUtc = dto.SaleStartUtc;
+        entity.SaleEndUtc = dto.SaleEndUtc;
         entity.SKU = dto.SKU.Trim();
         entity.StockQuantity = dto.StockQuantity;
         entity.IsActive = dto.IsActive;
@@ -157,14 +184,18 @@ public class ProductService(
         return true;
     }
 
-    public async Task<bool> SetSaleAsync(int id, decimal salePrice, CancellationToken cancellationToken = default)
+    public async Task<bool> SetSaleAsync(int id, SetSaleDto dto, CancellationToken cancellationToken = default)
     {
+        if (dto.SaleStartUtc.HasValue && dto.SaleEndUtc.HasValue && dto.SaleEndUtc.Value < dto.SaleStartUtc.Value)
+            return false;
         var entity = await products.GetByIdAsync(id, includeDeleted: false, cancellationToken);
         if (entity is null)
             return false;
-        if (salePrice > entity.RegularPrice)
+        if (dto.SalePrice > entity.RegularPrice)
             return false;
-        entity.SalePrice = salePrice;
+        entity.SalePrice = dto.SalePrice;
+        entity.SaleStartUtc = dto.SaleStartUtc;
+        entity.SaleEndUtc = dto.SaleEndUtc;
         entity.UpdatedAt = DateTime.UtcNow;
         products.Update(entity);
         await products.SaveChangesAsync(cancellationToken);
@@ -177,6 +208,8 @@ public class ProductService(
         if (entity is null)
             return false;
         entity.SalePrice = null;
+        entity.SaleStartUtc = null;
+        entity.SaleEndUtc = null;
         entity.UpdatedAt = DateTime.UtcNow;
         products.Update(entity);
         await products.SaveChangesAsync(cancellationToken);
@@ -238,6 +271,24 @@ public class ProductService(
             DisplayOrder = 0,
             AltText = entity.Name
         });
+    }
+
+    private async Task ApplyStorefrontPricingAsync(IReadOnlyList<Product> entities, List<ProductListDto> dtos, CancellationToken cancellationToken)
+    {
+        if (entities.Count != dtos.Count || entities.Count == 0)
+            return;
+        var flat = await categories.GetAllNonDeletedFlatAsync(cancellationToken);
+        var dict = flat.ToDictionary(c => c.Id);
+        var now = DateTime.UtcNow;
+        for (var i = 0; i < entities.Count; i++)
+            SalePricing.ApplyEffectiveToProductListDto(entities[i], dtos[i], dict, now);
+    }
+
+    private async Task ApplyStorefrontPricingSingleAsync(Product entity, ProductListDto dto, CancellationToken cancellationToken)
+    {
+        var flat = await categories.GetAllNonDeletedFlatAsync(cancellationToken);
+        var dict = flat.ToDictionary(c => c.Id);
+        SalePricing.ApplyEffectiveToProductListDto(entity, dto, dict, DateTime.UtcNow);
     }
 
     private static void SyncCategories(Product entity, CreateProductDto dto)

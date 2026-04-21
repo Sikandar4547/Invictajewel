@@ -80,8 +80,8 @@ const BANNER_UPLOAD_PATH_PATTERN = /^\/?uploads\/banners\/.+/i;
     .ij-field input:focus, .ij-field select:focus, .ij-field textarea:focus { outline: none; border-color: #a8864c; box-shadow: 0 0 0 3px rgba(168,134,76,0.15); }
     .ij-preview img { max-width: 280px; max-height: 160px; object-fit: cover; border: 1px solid #d1d5db; border-radius: 8px; margin-top: 16px; }
     .ij-actions { display: flex; gap: 10px; margin-top: 20px; }
-    .ij-actions button { border: 0; background: #a8864c; color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 600; }
-    .ij-actions a { border: 1px solid #d1d5db; color: #111827; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .ij-actions button { border: 0; background: #a8864c; color: #fff; padding: 10px 16px; border-radius: 6px; font-weight: 600; }
+    .ij-actions a { border: 1px solid #d1d5db; color: #111827; text-decoration: none; padding: 10px 16px; border-radius: 6px; }
     @media (max-width: 992px) { .ij-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ij-col-span-2 { grid-column: span 2; } }
     @media (max-width: 640px) { .ij-form-grid { grid-template-columns: 1fr; } .ij-col-span-2 { grid-column: span 1; } }
   `],

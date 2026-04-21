@@ -22,6 +22,8 @@ public class ProductRepository(ApplicationDbContext db) : IProductRepository
     {
         var query = db.Products
             .AsNoTracking()
+            .Include(p => p.ProductCategories)
+            .ThenInclude(pc => pc.Category)
             .Where(p => !p.IsDeleted);
 
         if (!includeInactive)
@@ -47,10 +49,33 @@ public class ProductRepository(ApplicationDbContext db) : IProductRepository
             query = query.Where(p =>
                 (p.SalePrice != null && p.SalePrice < p.RegularPrice ? p.SalePrice : p.RegularPrice) <= max);
 
+        var now = DateTime.UtcNow;
         if (isOnSale == true)
-            query = query.Where(p => p.SalePrice != null && p.SalePrice < p.RegularPrice);
+        {
+            query = query.Where(p =>
+                (p.SalePrice != null && p.SalePrice < p.RegularPrice
+                 && (p.SaleStartUtc == null || p.SaleStartUtc <= now)
+                 && (p.SaleEndUtc == null || p.SaleEndUtc >= now))
+                || p.ProductCategories.Any(pc =>
+                    pc.Category.SaleDiscountPercent != null
+                    && pc.Category.SaleDiscountPercent > 0
+                    && pc.Category.SaleDiscountPercent <= 100
+                    && (pc.Category.SaleStartUtc == null || pc.Category.SaleStartUtc <= now)
+                    && (pc.Category.SaleEndUtc == null || pc.Category.SaleEndUtc >= now)));
+        }
         else if (isOnSale == false)
-            query = query.Where(p => p.SalePrice == null || p.SalePrice >= p.RegularPrice);
+        {
+            query = query.Where(p =>
+                !((p.SalePrice != null && p.SalePrice < p.RegularPrice
+                   && (p.SaleStartUtc == null || p.SaleStartUtc <= now)
+                   && (p.SaleEndUtc == null || p.SaleEndUtc >= now))
+                  || p.ProductCategories.Any(pc =>
+                      pc.Category.SaleDiscountPercent != null
+                      && pc.Category.SaleDiscountPercent > 0
+                      && pc.Category.SaleDiscountPercent <= 100
+                      && (pc.Category.SaleStartUtc == null || pc.Category.SaleStartUtc <= now)
+                      && (pc.Category.SaleEndUtc == null || pc.Category.SaleEndUtc >= now))));
+        }
 
         var descending = string.Equals(sortOrder, "desc", StringComparison.OrdinalIgnoreCase);
         query = (sortBy?.ToLowerInvariant()) switch
@@ -69,6 +94,8 @@ public class ProductRepository(ApplicationDbContext db) : IProductRepository
         var items = await query
             .Skip((pageClamped - 1) * pageSizeClamped)
             .Take(pageSizeClamped)
+            .Include(p => p.ProductCategories)
+            .ThenInclude(pc => pc.Category)
             .Include(p => p.Images)
             .ToListAsync(cancellationToken);
 
@@ -94,6 +121,8 @@ public class ProductRepository(ApplicationDbContext db) : IProductRepository
             .OrderByDescending(p => p.CreatedAt)
             .Take(take)
             .Include(p => p.Images)
+            .Include(p => p.ProductCategories)
+            .ThenInclude(pc => pc.Category)
             .ToListAsync(cancellationToken);
 
     public async Task<IReadOnlyList<Product>> GetNewArrivalsAsync(int take, CancellationToken cancellationToken = default) =>
@@ -103,32 +132,14 @@ public class ProductRepository(ApplicationDbContext db) : IProductRepository
             .OrderByDescending(p => p.CreatedAt)
             .Take(take)
             .Include(p => p.Images)
+            .Include(p => p.ProductCategories)
+            .ThenInclude(pc => pc.Category)
             .ToListAsync(cancellationToken);
 
     public Task AddAsync(Product product, CancellationToken cancellationToken = default) =>
         db.Products.AddAsync(product, cancellationToken).AsTask();
 
     public void Update(Product product) => db.Products.Update(product);
-
-    public async Task ApplySaleToProductsInCategoriesAsync(IReadOnlyList<int> categoryIds, decimal salePrice, CancellationToken cancellationToken = default)
-    {
-        await db.Products
-            .Where(p => !p.IsDeleted && p.ProductCategories.Any(pc => categoryIds.Contains(pc.CategoryId)))
-            .ExecuteUpdateAsync(s => s
-                    .SetProperty(p => p.SalePrice, salePrice)
-                    .SetProperty(p => p.UpdatedAt, DateTime.UtcNow),
-                cancellationToken);
-    }
-
-    public async Task RemoveSaleFromProductsInCategoriesAsync(IReadOnlyList<int> categoryIds, CancellationToken cancellationToken = default)
-    {
-        await db.Products
-            .Where(p => !p.IsDeleted && p.ProductCategories.Any(pc => categoryIds.Contains(pc.CategoryId)))
-            .ExecuteUpdateAsync(s => s
-                    .SetProperty(p => p.SalePrice, (decimal?)null)
-                    .SetProperty(p => p.UpdatedAt, DateTime.UtcNow),
-                cancellationToken);
-    }
 
     public Task SaveChangesAsync(CancellationToken cancellationToken = default) =>
         db.SaveChangesAsync(cancellationToken);

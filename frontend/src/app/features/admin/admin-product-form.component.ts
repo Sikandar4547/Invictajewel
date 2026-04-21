@@ -4,11 +4,17 @@ import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Va
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { forkJoin, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { AdminCategoryService } from '../../core/services/admin-category.service';
 import { AdminProductService } from '../../core/services/admin-product.service';
 import { ToastService } from '../../core/services/toast.service';
 import { getImageUrl } from '../../core/utils/image-url.util';
 import { CategoryDto, SaveProductRequest } from '../../models/api.types';
+import { datetimeLocalValueToUtcIso, utcIsoToDatetimeLocalValue } from '../../core/utils/datetime-local.util';
 
 interface CatOption {
   id: number;
@@ -35,6 +41,16 @@ function saleVsRegular(group: AbstractControl): ValidationErrors | null {
   return null;
 }
 
+function saleDateRange(group: AbstractControl): ValidationErrors | null {
+  const start = group.get('saleStartLocal')?.value;
+  const end = group.get('saleEndLocal')?.value;
+  if (!start || !end) return null;
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+  if (startDate >= endDate) return { saleEndBeforeStart: true };
+  return null;
+}
+
 const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
 
 @Component({
@@ -43,8 +59,11 @@ const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterLink,
-  ],
+    RouterLink,    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,  ],
   template: `
     <div class="ij-admin-form-wrap">
       <a [routerLink]="['/admin/products']" class="ij-back-link">← Back to Products</a>
@@ -87,6 +106,15 @@ const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
                 <label>Sale Price</label>
                 <input type="number" formControlName="salePrice" [class.is-invalid]="isFieldInvalid('salePrice')" min="0" step="0.01" />
                 @if (errorFor('salePrice'); as msg) { <small class="ij-error">{{ msg }}</small> }
+              </div>
+              <div class="ij-field">
+                <label>Product sale starts</label>
+                <input type="datetime-local" formControlName="saleStartLocal" />
+              </div>
+              <div class="ij-field">
+                <label>Product sale ends</label>
+                <input type="datetime-local" formControlName="saleEndLocal" />
+                @if (getDateRangeError(); as msg) { <small class="ij-error">{{ msg }}</small> }
               </div>
               <div class="ij-field">
                 <label>Stock Quantity</label>
@@ -134,8 +162,8 @@ const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
     .ij-preview img { max-width: 280px; max-height: 180px; border: 1px solid #d1d5db; border-radius: 8px; margin-top: 14px; object-fit: cover; }
     .ij-alert { margin-top: 14px; background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 10px; color: #92400e; }
     .ij-actions { display: flex; gap: 10px; margin-top: 20px; }
-    .ij-actions button { border: 0; background: #a8864c; color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 600; }
-    .ij-actions a { border: 1px solid #d1d5db; color: #111827; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .ij-actions button { border: 0; background: #a8864c; color: #fff; padding: 10px 16px; border-radius: 6px; font-weight: 600; }
+    .ij-actions a { border: 1px solid #d1d5db; color: #111827; text-decoration: none; padding: 10px 16px; border-radius: 6px; }
     @media (max-width: 992px) { .ij-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ij-col-span-3 { grid-column: span 2; } }
     @media (max-width: 640px) { .ij-form-grid { grid-template-columns: 1fr; } .ij-col-span-2, .ij-col-span-3 { grid-column: span 1; } }
   `],
@@ -170,8 +198,10 @@ export class AdminProductFormComponent implements OnInit {
       isFeatured: [false],
       isNew: [false],
       imageUrl: [''],
+      saleStartLocal: [''],
+      saleEndLocal: [''],
     },
-    { validators: saleVsRegular }
+    { validators: [saleVsRegular, saleDateRange] }
   );
 
   isFieldInvalid(fieldName: string): boolean {
@@ -187,6 +217,11 @@ export class AdminProductFormComponent implements OnInit {
     if (field.errors?.['pattern']) return 'Slug must use lowercase letters, numbers, and hyphens only.';
     if (field.errors?.['min']) return `${this.labelFor(fieldName)} must be zero or greater.`;
     return 'Invalid value.';
+  }
+
+  getDateRangeError(): string | null {
+    if (!this.form.errors?.['saleEndBeforeStart'] || !(this.form.touched || this.form.dirty)) return null;
+    return 'Sale end must be on or after sale start.';
   }
 
   private labelFor(fieldName: string): string {
@@ -247,6 +282,8 @@ export class AdminProductFormComponent implements OnInit {
         isFeatured: p.isFeatured,
         isNew: p.isNew,
         imageUrl: primary,
+        saleStartLocal: utcIsoToDatetimeLocalValue(p.saleStartUtc ?? undefined),
+        saleEndLocal: utcIsoToDatetimeLocalValue(p.saleEndUtc ?? undefined),
       });
       if (primary) this.previewUrl = getImageUrl(primary);
       this.loading = false;
@@ -284,6 +321,8 @@ export class AdminProductFormComponent implements OnInit {
       primaryCategoryId: cid,
       categoryId: cid,
       imageUrl: this.isNew ? (v.imageUrl?.trim() || null) : v.imageUrl?.trim() ?? null,
+      saleStartUtc: datetimeLocalValueToUtcIso(v.saleStartLocal),
+      saleEndUtc: datetimeLocalValueToUtcIso(v.saleEndLocal),
     };
 
     if (this.isNew) {

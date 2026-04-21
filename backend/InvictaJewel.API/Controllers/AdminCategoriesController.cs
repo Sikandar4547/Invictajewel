@@ -49,18 +49,4 @@ public class AdminCategoriesController(ICategoryService categories) : Controller
     [HttpPatch("{id:int}/toggle-status")]
     public async Task<IActionResult> ToggleStatus(int id, CancellationToken ct) =>
         await categories.ToggleStatusAsync(id, ct) ? NoContent() : NotFound();
-
-    [HttpPost("{id:int}/apply-sale")]
-    public async Task<IActionResult> ApplySale(int id, [FromBody] ApplyCategorySaleDto dto, CancellationToken ct)
-    {
-        await categories.ApplySaleAsync(id, dto.SalePrice, ct);
-        return NoContent();
-    }
-
-    [HttpDelete("{id:int}/remove-sale")]
-    public async Task<IActionResult> RemoveSale(int id, CancellationToken ct)
-    {
-        await categories.RemoveSaleAsync(id, ct);
-        return NoContent();
-    }
 }

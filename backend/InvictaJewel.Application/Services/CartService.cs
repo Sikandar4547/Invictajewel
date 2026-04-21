@@ -1,11 +1,12 @@
 using AutoMapper;
 using InvictaJewel.Application.Abstractions.Repositories;
 using InvictaJewel.Application.DTOs;
+using InvictaJewel.Application.Pricing;
 using InvictaJewel.Domain.Entities;
 
 namespace InvictaJewel.Application.Services;
 
-public class CartService(ICartRepository carts, IProductRepository products, IMapper mapper) : ICartService
+public class CartService(ICartRepository carts, IProductRepository products, ICategoryRepository categories, IMapper mapper) : ICartService
 {
     public async Task<CartDto?> GetCartAsync(Guid cartIdentifier, CancellationToken cancellationToken = default)
     {
@@ -37,17 +38,14 @@ public class CartService(ICartRepository carts, IProductRepository products, IMa
 
         var product = await products.GetByIdAsync(dto.ProductId, includeDeleted: false, cancellationToken)
             ?? throw new InvalidOperationException("Product not found or inactive.");
-        if (!product.IsActive || product.StockQuantity < dto.Quantity)
-            throw new InvalidOperationException("Product is not available in the requested quantity.");
+        if (!product.IsActive)
+            throw new InvalidOperationException("Product is not available.");
 
-        var unit = EffectiveUnitPrice(product);
+        var unit = await EffectiveUnitPriceAsync(product, cancellationToken);
         var existing = cart.Items.FirstOrDefault(i => i.ProductId == dto.ProductId);
         if (existing is not null)
         {
-            var newQty = existing.Quantity + dto.Quantity;
-            if (newQty > product.StockQuantity)
-                throw new InvalidOperationException("Insufficient stock.");
-            existing.Quantity = newQty;
+            existing.Quantity += dto.Quantity;
             existing.UnitPrice = unit;
         }
         else
@@ -72,10 +70,10 @@ public class CartService(ICartRepository carts, IProductRepository products, IMa
         if (item is null)
             return null;
         var product = await products.GetByIdAsync(item.ProductId, includeDeleted: false, cancellationToken);
-        if (product is null || dto.Quantity > product.StockQuantity)
-            throw new InvalidOperationException("Invalid quantity for product stock.");
+        if (product is null)
+            throw new InvalidOperationException("Product not found.");
         item.Quantity = dto.Quantity;
-        item.UnitPrice = EffectiveUnitPrice(product);
+        item.UnitPrice = await EffectiveUnitPriceAsync(product, cancellationToken);
         await carts.SaveChangesAsync(cancellationToken);
         var cart = await carts.GetByIdentifierAsync(item.Cart.CartIdentifier, cancellationToken);
         return cart is null ? null : ToDto(cart);
@@ -121,6 +119,10 @@ public class CartService(ICartRepository carts, IProductRepository products, IMa
         };
     }
 
-    private static decimal EffectiveUnitPrice(Product product) =>
-        product.SalePrice is { } s && s < product.RegularPrice ? s : product.RegularPrice;
+    private async Task<decimal> EffectiveUnitPriceAsync(Product product, CancellationToken cancellationToken)
+    {
+        var flat = await categories.GetAllNonDeletedFlatAsync(cancellationToken);
+        var dict = flat.ToDictionary(c => c.Id);
+        return SalePricing.GetEffectiveUnitPrice(product, dict, DateTime.UtcNow);
+    }
 }

@@ -23,7 +23,5 @@ public interface IProductRepository
     Task<IReadOnlyList<Product>> GetNewArrivalsAsync(int take, CancellationToken cancellationToken = default);
     Task AddAsync(Product product, CancellationToken cancellationToken = default);
     void Update(Product product);
-    Task ApplySaleToProductsInCategoriesAsync(IReadOnlyList<int> categoryIds, decimal salePrice, CancellationToken cancellationToken = default);
-    Task RemoveSaleFromProductsInCategoriesAsync(IReadOnlyList<int> categoryIds, CancellationToken cancellationToken = default);
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }

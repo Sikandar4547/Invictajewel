@@ -15,6 +15,10 @@ public class Category : ISoftDeletable
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
     public string? Metadata { get; set; }
+    /// <summary>Percentage discount off regular price for products in this category (and ancestors apply per product path). Null or 0 = no category sale.</summary>
+    public decimal? SaleDiscountPercent { get; set; }
+    public DateTime? SaleStartUtc { get; set; }
+    public DateTime? SaleEndUtc { get; set; }
     public bool IsDeleted { get; set; }
     public DateTime? DeletedAt { get; set; }
     public ICollection<ProductCategory> ProductCategories { get; set; } = new List<ProductCategory>();

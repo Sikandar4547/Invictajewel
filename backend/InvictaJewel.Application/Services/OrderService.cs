@@ -41,8 +41,8 @@ public class OrderService(
         {
             var product = await products.GetByIdAsync(line.ProductId, includeDeleted: false, cancellationToken)
                 ?? throw new InvalidOperationException($"Product {line.ProductId} no longer available.");
-            if (!product.IsActive || line.Quantity > product.StockQuantity)
-                throw new InvalidOperationException($"Insufficient stock for {product.Name}.");
+            if (!product.IsActive)
+                throw new InvalidOperationException($"Product {product.Name} is not available.");
 
             var unit = line.UnitPrice;
             var lineTotal = unit * line.Quantity;
@@ -55,9 +55,6 @@ public class OrderService(
                 Quantity = line.Quantity,
                 TotalPrice = lineTotal
             });
-            product.StockQuantity -= line.Quantity;
-            product.UpdatedAt = DateTime.UtcNow;
-            products.Update(product);
         }
 
         order.OrderTotal = total;
