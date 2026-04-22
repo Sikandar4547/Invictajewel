@@ -74,7 +74,7 @@ import { RouterLink } from '@angular/router';
               </g>
             </svg>
             <p class="font-semibold text-sm sm:text-base lg:text-lg mb-2 text-center">Whatsapp Us</p>
-            <p class="text-xs sm:text-sm lg:text-sm opacity-70 text-center leading-relaxed">+923232985524</p>
+            <p class="text-xs sm:text-sm lg:text-sm opacity-70 text-center leading-relaxed">+923232290524</p>
           </button>
 
           <!-- Find Us -->
@@ -131,7 +131,7 @@ import { RouterLink } from '@angular/router';
 })
 export class FooterComponent {
   readonly year = new Date().getFullYear();
-  private readonly whatsappNumber = '+923232985524';
+  private readonly whatsappNumber = '+923232290524';
   private readonly email = 'contact@invictajewel.com';
   private readonly mapAddress = 'Race Course Road, Rawalpindi, Pakistan';
 

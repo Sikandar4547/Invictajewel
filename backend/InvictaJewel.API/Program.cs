@@ -142,13 +142,11 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("Frontend", policy =>
-    {
-        policy.WithOrigins(
-                builder.Configuration.GetSection("Cors:Origins").Get<string[]>() ?? ["http://localhost:4200"])
+    options.AddPolicy("AllowAll",
+        policy => policy
+            .AllowAnyOrigin()
             .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
+            .AllowAnyMethod());
 });
 
 builder.Services.AddApplication();
@@ -194,11 +192,12 @@ app.UseStaticFiles();
 
 // Routing must be enabled before authentication and authorization
 app.UseRouting();
-
-app.UseCors("Frontend");
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapFallbackToFile("index.html");
+
 
 app.Run();
