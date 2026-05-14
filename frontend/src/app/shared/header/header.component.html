@@ -5,6 +5,7 @@
 
   <!-- Desktop nav: use drawer below xl so tablets (e.g. iPad) are not cramped / clipped -->
   <nav class="hidden xl:flex flex-1 min-w-0 gap-1 xl:gap-2 items-center justify-center min-h-[48px]" aria-label="Main">
+    <!-- HOME first -->
     <a
       mat-button
       routerLink="/"
@@ -14,7 +15,7 @@
     >
       HOME
     </a>
-    <!-- Invicta World Dropdown -->
+    <!-- Invicta World Dropdown - second -->
     <div class="relative group/invicta h-full flex items-center">
       <a
         routerLink="/about"
@@ -140,31 +141,25 @@
       </button>
     </div>
     <div class="flex flex-col py-2">
-      <a
-        mat-button
-        routerLink="/admin/login"
-        class="!justify-start rounded-none text-app-ink border-b border-app-border"
-        (click)="closeMobileMenu()"
-      >
-        Admin login
-      </a>
-      <a
-        mat-button
-        routerLink="/about"
-        class="!justify-start rounded-none text-app-ink border-b border-app-border"
-        (click)="closeMobileMenu()"
-      >
-        INVICTA WORLD
-      </a>
+      <!-- HOME first in mobile menu -->
       <a
         mat-button
         routerLink="/"
         routerLinkActive="nav-mobile-active"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="!justify-start rounded-none text-app-ink"
+        class="mobile-menu-link !justify-start rounded-none text-app-ink border-b border-app-border"
         (click)="closeMobileMenu()"
       >
         HOME
+      </a>
+      <!-- INVICTA WORLD second -->
+      <a
+        mat-button
+        routerLink="/about"
+        class="mobile-menu-link !justify-start rounded-none text-app-ink border-b border-app-border"
+        (click)="closeMobileMenu()"
+      >
+        INVICTA WORLD
       </a>
       @for (item of categories$ | async; track item.id) {
         <ng-container [ngTemplateOutlet]="mobileBranch" [ngTemplateOutletContext]="{ $implicit: item, depth: 0 }" />
@@ -180,7 +175,7 @@
         <mat-panel-title class="flex items-center gap-2 flex-1 mr-2">
           <a
             [routerLink]="['/category', node.slug]"
-            class="text-left flex-1 font-medium text-app-ink no-underline hover:text-app-accent"
+            class="text-left flex-1 font-medium text-app-ink no-underline hover:text-app-accent mobile-nav-title"
             (click)="onMobileNavLinkClick($event)"
           >
             {{ node.name }}
@@ -198,7 +193,7 @@
       mat-button
       [routerLink]="['/category', node.slug]"
       routerLinkActive="nav-mobile-active"
-      class="!justify-start rounded-none w-full"
+      class="mobile-menu-link !justify-start rounded-none w-full"
       [style.padding-left.rem]="3 + depth * 0.75"
       (click)="onMobileNavLinkClick($event)"
     >
